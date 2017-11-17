@@ -29,24 +29,36 @@ public class WordDistance {
 					int top = distanceMap[i][j + 1];
 					int left = distanceMap[i + 1][j];
 					
-					int min = topleft;
-					if (top < min)
-						min = top;
-					if (left < min)
-						min = left;
-					min = min + 1;
-					distanceMap[i + 1][j + 1] = min;
+					distanceMap[i + 1][j + 1] = findMinimun(topleft, top, left) + 1;
 				}//end else
 			}//end for
 		}//end for
-			
+		
+		printDistanceMap(distanceMap);//Test
+		
 		return distanceMap[length1][length2];
 		
 	}//end method getMinimumDistance
+
+	public static int findMinimun(int a, int b, int c) {
+		int min = a;
+		if (b < min)
+			min = b;
+		if (c < min)
+			min = c;
+		return min;
+	}
+
+	//Test method
+	public static void printDistanceMap(int[][] distanceMap) {
 		
-	
-	
-	
-	
+		for (int j = 0; j < distanceMap[0].length; j++) {
+			for (int i = 0; i < distanceMap.length; i++) {
+				System.out.print(distanceMap[i][j] + " ");
+			}
+			System.out.println("");
+		}
+		System.out.println("");
+	}
 	
 }
