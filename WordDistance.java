@@ -22,19 +22,18 @@ public class WordDistance {
 			for (int j = 0; j < length2; j++) {
 				char char2 = word2.charAt(j);
 				
-				if (char1 == char2) {
-					distanceMap[i + 1][j + 1] = distanceMap[i][j];
-				} else {
-					int topleft = distanceMap[i][j];
-					int top = distanceMap[i][j + 1];
-					int left = distanceMap[i + 1][j];
-					
-					distanceMap[i + 1][j + 1] = findMinimun(topleft, top, left) + 1;
-				}//end else
+				int topleft = distanceMap[i][j];
+				int top = distanceMap[i][j + 1];
+				int left = distanceMap[i + 1][j];
+				
+				distanceMap[i + 1][j + 1] = Math.min(topleft, Math.min(top, left));
+
+				if (char1 != char2)
+					distanceMap[i + 1][j + 1] ++;		
 			}//end for
 		}//end for
 		
-		printDistanceMap(distanceMap);//Test
+		//printDistanceMap(distanceMap);//Test
 		
 		return distanceMap[length1][length2];
 		
