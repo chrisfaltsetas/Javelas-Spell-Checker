@@ -14,7 +14,7 @@ public class SpellChecker {
 	 	HashMap<String,Integer> map = putWords();
 	 	Scanner input=new Scanner(System.in);
 		String text=input.nextLine();
-		SpellChecker(map,text);
+		SearchDic(map,text);
 
 
 	}
@@ -36,7 +36,7 @@ public class SpellChecker {
      }
 
 	//Check if a word exists in the dictionary.Every single word or character at the text should have space.
-     public static void SpellChecker(HashMap<String,Integer> map, String text)  {
+     public static void SearchDic(HashMap<String,Integer> map, String text)  {
     	 Scanner input=new Scanner(System.in);
     	 for(String retval: text.split(" ")) {
     		 String copy_value = SpecialCharacters(retval).toLowerCase();
