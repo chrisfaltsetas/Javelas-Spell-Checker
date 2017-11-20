@@ -13,9 +13,13 @@ public class TestMain {
 		System.out.println("");
 		System.out.println("");
 		System.out.println("Distance is: " + WordDistance.getMinimumDistance("sitting", "kitten"));	
+		System.out.println("");
+		System.out.println("");
 		
-				
+		
 		HashMapUses.HashMapsTest();
+		
+		
 		
 		String path = "C:/Users/CHRIS/Desktop/LAB/Java/Javelas/src/Greek.txt";//Needs to be changed
 		String encoding = "UTF8";
@@ -25,6 +29,7 @@ public class TestMain {
 			} catch (IOException ioException) {
 				System.out.println (ioException.toString());
 				System.out.println("Could not find file: " + path);
+				break;
 			}
 		}
 	}
