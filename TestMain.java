@@ -15,7 +15,7 @@ public class TestMain {
 		System.out.println("Distance is: " + WordDistance.getMinimumDistance("sitting", "kitten"));	
 		
 				
-		HashMapsExample.HashMapsTest();
+		HashMapUses.HashMapsTest();
 		
 		String path = "C:/Users/CHRIS/Desktop/LAB/Java/Javelas/src/Greek.txt";//Needs to be changed
 		String encoding = "UTF8";
