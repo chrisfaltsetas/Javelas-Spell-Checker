@@ -6,8 +6,6 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 
-
-
 public class SpellChecker {
 
 	//eclipse suggestions to avoid resource leaks
