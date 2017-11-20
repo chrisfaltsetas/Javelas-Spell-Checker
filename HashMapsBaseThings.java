@@ -13,8 +13,8 @@ public class HashMapsBaseThings {
 		//i just added 5 elements
 		//how get values  based on the key ;
 		//use hashmap.get(key)
-	String valueOfMap =hashmap.get(54);
-	System.out.println(valueOfMap);
+		String valueOfMap =hashmap.get(54);
+		System.out.println(valueOfMap);
 		//remove values based on key
 		//use hashmap.remove(key);
 		hashmap.remove(1);
