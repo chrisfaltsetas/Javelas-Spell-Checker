@@ -7,12 +7,13 @@ public class TestMain {
 		printDistanceMap("cayry", "caral");
 		printDistanceMap("sitting", "kitten");
 		
-		HashMapUses.HashMapsTest();
+		//HashMapUses.HashMapsTest();
 				
 		String path = "C:/Users/CHRIS/Desktop/LAB/Java/Javelas/src/Greek.txt";//Needs to be changed
 		String encoding = "UTF8";
-		checkSpellingTest(path, encoding);
+		//checkSpellingTest(path, encoding);
 		
+		hashcodeTest();
 	
 	}
 	
@@ -35,6 +36,16 @@ public class TestMain {
 				System.out.println("Could not find file: " + path);
 				break;
 			}
+		}
+	}
+	
+	public static void hashcodeTest() {
+		
+		char c = "ά".charAt(0);
+		while (c <= "ώ".charAt(0)) {
+			String s = String.valueOf(c);
+			System.out.println(c + " = " + s.hashCode());
+			c++;
 		}
 	}
 
