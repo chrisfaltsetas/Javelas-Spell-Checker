@@ -1,0 +1,26 @@
+LinkedHashMap useful methods
+
+LinkedHashMap Java 8 library: https://docs.oracle.com/javase/8/docs/api/java/util/LinkedHashMap.html
+HashMap Java 8 library: https://docs.oracle.com/javase/8/docs/api/java/util/HashMap.html
+
+
+
+e.g. LinkedHashMap:	LinkedHashMap<K, V> testMap = new LinkedHashMap<K, V>() //K: Key, V: Value
+
+1) void clear() //Removes all of the mappings from this map.
+	testMap.clear();
+	
+2) boolean containsValue(Object value) //Returns true if this map maps one or more keys to the specified value.
+	boolean flag = testMap.containsValue(testValue);
+	if (testMap.containsValue(testValue)) {...}
+	
+3) V get(Object key) //Returns the value to which the specified key is mapped, or null if this map contains no mapping for the key.
+	V valueOftestKey = testMap.get(testKey);
+	
+4) 
+
+
+
+
+
+
