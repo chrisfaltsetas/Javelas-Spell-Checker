@@ -1,13 +1,7 @@
 public class WordDistance {
 	
 	public static int getMinimumDistance(String word1, String word2) {
-		
-		if (word1.length() < word2.length()) {
-			String temp = word1;
-			word1 = word2;
-			word2 = temp;			
-		}			
-		
+				
 		int length1 = word1.length();
 		int length2 = word2.length();
 		
@@ -33,7 +27,7 @@ public class WordDistance {
 				distanceMap[i + 1][j + 1] = Math.min(topleft, Math.min(top, left));
 
 				if (char1 != char2)
-					distanceMap[i + 1][j + 1] ++;				
+					distanceMap[i + 1][j + 1] ++;
 			}//end for
 		}//end for
 		
@@ -44,14 +38,14 @@ public class WordDistance {
 		
 	}//end method getMinimumDistance
 	
-	
+	/*
 	public static int distanceOptimal(String word1, String word2) {
 		
 		if (word1.length() < word2.length()) {
 			String temp = word1;
 			word1 = word2;
-			word2 = temp;			
-		}			
+			word2 = temp;
+		}
 		
 		int length1 = word1.length();
 		int length2 = word2.length();
@@ -66,10 +60,8 @@ public class WordDistance {
 			distanceMap[0][i] = i;
 		}
 		
-
-			
 		for (int j = 0; j < length1; j++) {
-			char char1 = word1.charAt(j);								
+			char char1 = word1.charAt(j);
 			for (int i = 0; i < ((j+1) < length2 ? (j+1) : length2); i++) {
 				char char2 = word2.charAt(i);
 				
@@ -92,6 +84,7 @@ public class WordDistance {
 		return distanceMap[length2][length1];
 		
 	}//end method distanceOptimal
+	*/
 		
 	
 	//Test method
@@ -106,7 +99,7 @@ public class WordDistance {
 		System.out.println();
 		
 		for (int i = 0; i < distanceMap.length; i++) {
-			if (i != 0)			
+			if (i != 0)
 				System.out.print(word2.charAt(i - 1) + " ");
 			else
 				System.out.print("  ");
