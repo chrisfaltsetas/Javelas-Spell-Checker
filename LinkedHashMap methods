@@ -17,8 +17,33 @@ e.g. LinkedHashMap:	LinkedHashMap<K, V> testMap = new LinkedHashMap<K, V>() //K:
 3) V get(Object key) //Returns the value to which the specified key is mapped, or null if this map contains no mapping for the key.
 	V valueOftestKey = testMap.get(testKey);
 	
-4) 
+4) object clone() //Returns a shallow copy of this HashMap instance: the keys and values themselves are not cloned.
+	object obj = testMap.Clone;
 
+5) object containsKey(Object key) //Returns true if this map contains a mapping for the specified key.
+	boolean flag = testMap.containsKey(testKey);
+	if (testMap.containsKey(testKey)) {...}
+
+6) boolean isEmpty() //Returns true if this map contains no key-value mappings.
+	boolean flag = testMap.isEmpty();
+	if (testMap.isEmpty()) {...}
+	
+7) V put(K key, V value) //Associates the specified value with the specified key in this map.
+	testMap.put(testKey, testValue);
+	
+8) V remove(Object key) //Removes the mapping for the specified key from this map if present.
+	testMap.remove(testKey);
+	
+9) V replace(K key, V value) //Replaces the entry for the specified key only if it is currently mapped to some value.
+	testMap.replace(testKey, testValue);
+	
+10) int size() //Returns the number of key-value mappings in this map.
+	int testMap.size();
+	
+11) int hashCode() //Returns a hash code value for the object.
+    	int code = Object.hashCode();
+
+	
 
 
 
