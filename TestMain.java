@@ -14,7 +14,14 @@ public class TestMain {
 		//checkSpellingTest(path, encoding);
 		
 		hashcodeTest();
-	
+		
+		lowerUpperTest("Α");
+		lowerUpperTest("Ά");
+		lowerUpperTest("α");
+		lowerUpperTest("ά");
+		
+		
+		
 	}
 	
 	
@@ -41,12 +48,36 @@ public class TestMain {
 	
 	public static void hashcodeTest() {
 		
-		char c = "ά".charAt(0);
-		while (c <= "ώ".charAt(0)) {
-			String s = String.valueOf(c);
+		//902-974
+		char c = "!".charAt(0);
+		String s = String.valueOf(c);
+		int x = s.hashCode();
+		int counter = 0;
+		while (x >= 0 && counter < 1000) {			
 			System.out.println(c + " = " + s.hashCode());
 			c++;
+			s = String.valueOf(c);
+			x = s.hashCode();
+			counter++;
+			
 		}
+	}
+	
+	public static void lowerUpperTest(String string1) {
+				
+		System.out.println("Original string = " + string1);
+		System.out.println("Lower case = " + string1.toLowerCase());
+		System.out.println("Upper case = " + string1.toUpperCase());
+		
+		if (string1.equals(string1.toLowerCase()))
+			System.out.println("O->L: " + string1 + " = " + string1.toLowerCase());
+		else
+			System.out.println("O->L: " + string1 + " # " + string1.toLowerCase());
+		
+		if (string1.equals(string1.toUpperCase()))
+			System.out.println("O->U: " + string1 + " = " + string1.toUpperCase());
+		else
+			System.out.println("O->U: " + string1 + " # " + string1.toUpperCase());
 	}
 
 }
