@@ -21,6 +21,12 @@ public class TestMain {
 		lowerUpperTest("ά");
 		
 		
+		String x = "ω";
+		System.out.println(x.hashCode());
+		String y = "α";
+		System.out.println(y.hashCode());
+		System.out.println("Difference is: " + (Math.abs(y.hashCode()-x.hashCode())));
+		
 		
 	}
 	
@@ -49,11 +55,11 @@ public class TestMain {
 	public static void hashcodeTest() {
 		
 		//902-974
-		char c = "!".charAt(0);
+		char c = "΅".charAt(0);
 		String s = String.valueOf(c);
 		int x = s.hashCode();
 		int counter = 0;
-		while (x >= 0 && counter < 1000) {			
+		while (x >= 0 && counter < 74) {			
 			System.out.println(c + " = " + s.hashCode());
 			c++;
 			s = String.valueOf(c);
