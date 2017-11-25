@@ -46,11 +46,9 @@ public class SpellChecker {
     	 }
      }
 
-     //An effort to ignore the special characters like (, . @) and numbers. IT SHOULD BE FIXED IMMEDIATELY!
+     //An effort to ignore the special characters like (, . @) and numbers.Yπό τον περιορισμό ότι θα αφήνει κενά μετά από τους ειδικούς χαρακτήρες
      public static String SpecialCharacters(String words) {
-    	 if(words.contains(",")) {
-    		 words.replace("," ," ");
-    	 }
+    	 words= words.replaceAll("[^a-zA-Z]", "");
     	 return words;
      }
 
