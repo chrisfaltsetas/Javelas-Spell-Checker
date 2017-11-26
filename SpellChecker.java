@@ -46,9 +46,9 @@ public class SpellChecker {
     	 }
      }
 
-     //An effort to ignore the special characters like (, . @) and numbers.Yπό τον περιορισμό ότι θα αφήνει κενά μετά από τους ειδικούς χαρακτήρες
+     //Ignore the special characters
      public static String SpecialCharacters(String words) {
-    	 words= words.replaceAll("[^\\p{InGreek}a-zA-Z]", "");
+    	 words= words.replaceAll("[\\P{InGreek}a-zA-Z]", "");
     	 return words;
      }
 
