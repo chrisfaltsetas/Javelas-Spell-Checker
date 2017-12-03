@@ -6,7 +6,8 @@ public class Suggestions {
 	private ArrayList<String> suggestedWords;
 	
 	public Suggestions(String word){
-		this.setWord(word);	
+		this.word = word;
+		this.suggestedWords = new ArrayList<String>();
 	}
 		
 	public void run() {
