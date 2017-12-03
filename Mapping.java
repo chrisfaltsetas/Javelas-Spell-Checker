@@ -62,12 +62,12 @@ public class Mapping {
 				}
 			}
 			
-			if (wordExists)
-				System.out.println(word + " exists");
-			else {
+			if (!wordExists) {
 				System.out.println(word + " doesn't exist");
-				firstSuggestions(word);
-			}
+				word.firstSuggestions();
+			}			
+			else 
+				System.out.println(word + " exists");						
 		}
 	}
 
@@ -89,39 +89,4 @@ public class Mapping {
 		}
 		return jhash;
 	}
-	
-	
-	public static void firstSuggestions(String word) {
-		
-		word = word.substring(0, 1).toLowerCase() + word.substring(1).toLowerCase();
-		
-		boolean wordExists = false;
-		if (map.containsKey(jHashCode(word))) {
-			for (String wordInList: map.get(jHashCode(word))) {
-				if (wordInList.equals(word))
-					wordExists = true;
-			}
-		}
-		
-		if (wordExists)
-			System.out.println("Suggestion: " + word);
-		
-		
-		
-		word = word.substring(0, 1).toUpperCase() + word.substring(1).toLowerCase();
-		
-		wordExists = false;
-		if (map.containsKey(jHashCode(word))) {
-			for (String wordInList: map.get(jHashCode(word))) {
-				if (wordInList.equals(word))
-					wordExists = true;
-			}
-		}
-		
-		if (wordExists)
-			System.out.println("Suggestion: " + word);
-		
-	}	
-
-
 }

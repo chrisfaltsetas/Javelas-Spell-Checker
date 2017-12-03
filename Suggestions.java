@@ -1,20 +1,54 @@
-
 public class Suggestions {
-	public void suggestions(String word) {
-		String path = "C:\\Users\\spyro\\Desktop\\WORD\\Greek.txt";
-		String encoding = "UTF8";
-		LinkedHashMap<Integer,ArrayList<String>>  search = putWordsInHashMap( path,  encoding);
-		//HashMap<Integer,String>  dic = SpellChecker.run(path, encoding);
-		 int code = jHashCode(word);
-		 ArrayList<String> array ;
-		 array = search.get(code);
-		 String[] suggestions ;
-		 int i = 0;
-		 while ((array.hasNext())|| (i<10)) {
-			 suggestions[i]=array.get(i).toString();// 
-			 
-		 }
-
+	
+	private String word;
+	
+	public Suggestions(String word){
+		this.setWord(word);	
+	}
+		
+	public void run() {
+		firstSuggestions();
+	}
+	
+	public void firstSuggestions() {
+				
+		word = word.substring(0, 1).toLowerCase() + word.substring(1).toLowerCase();
+		
+		boolean wordExists = false;
+		if (Mapping.map.containsKey(Mapping.jHashCode(word))) {
+			for (String wordInList: Mapping.map.get(Mapping.jHashCode(word))) {
+				if (wordInList.equals(word))
+					wordExists = true;
+			}
+		}
+		
+		if (wordExists)
+			System.out.println("Suggestion: " + word);
+		
+		
+		
+		word = word.substring(0, 1).toUpperCase() + word.substring(1).toLowerCase();
+		
+		wordExists = false;
+		if (Mapping.map.containsKey(Mapping.jHashCode(word))) {
+			for (String wordInList: Mapping.map.get(Mapping.jHashCode(word))) {
+				if (wordInList.equals(word))
+					wordExists = true;
+			}
+		}
+		
+		if (wordExists)
+			System.out.println("Suggestion: " + word);
+		
 	}
 
+
+	public String getWord() {
+		return word;
+	}
+
+	public void setWord(String word) {
+		this.word = word;
+	}	
+	
 }
