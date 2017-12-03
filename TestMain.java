@@ -7,8 +7,8 @@ public class TestMain {
 
 	public static void main(String[] args) {
 
-		printDistanceMap("cayry", "caral");
-		printDistanceMap("sitting", "kitten");
+		//printDistanceMap("cayry", "caral");
+		//printDistanceMap("sitting", "kitten");
 		
 		//HashMapUses.HashMapsTest();
 				
@@ -16,20 +16,17 @@ public class TestMain {
 		String encoding = "UTF8";
 		checkSpellingTest(path, encoding);
 		
-		hashcodeTest();
+		//hashcodeTest();
 		
-		lowerUpperTest("ά");
-		lowerUpperTest("α");
-		lowerUpperTest("Α");
-		lowerUpperTest("Ά");
+		/*
+		String x = "αβγο";
+		System.out.println("jHash of " + x + ": " + jHashCode(x));
+		String y = "αβογ";
+		System.out.println("jHash of " + y + ": " + jHashCode(y));		
+		System.out.println("Difference is: " + (Math.abs(jHashCode(x)-jHashCode(y))));
+		*/
 		
-		
-		String x = "α";
-		System.out.println(x.hashCode());
-		String y = "ω";
-		System.out.println(y.hashCode());
-		System.out.println("Difference is: " + (Math.abs(y.hashCode()-x.hashCode())));
-		
+		System.out.println("-> End of TestMain.");
 		
 	}
 	
@@ -47,7 +44,7 @@ public class TestMain {
 		String nextWord = "Ν";
 		while (nextWord.equals("Ν")) {
 			try {
-				SpellChecker.run(path, encoding);
+				Mapping.run();
 				input = new Scanner(System.in);
 				System.out.print("Θελεις να δοκιμασεις κι αλλη προταση φιλε μου; \nΓραψε Ν για ναι ή Ο για οχι: ");
 				nextWord = input.nextLine();
@@ -57,8 +54,8 @@ public class TestMain {
 					nextWord = input.nextLine();
 				}				
 			} catch (IOException ioException) {
-				System.out.println (ioException.toString());
-				System.out.println("Could not find file: " + path);
+				System.out.println (ioException);
+				System.out.println("Could not find the dictionary file.");
 				break;
 			}
 		}
@@ -71,7 +68,7 @@ public class TestMain {
 		String s = String.valueOf(c);
 		int x = s.hashCode();
 		int counter = 0;
-		while (x >= 0 && counter < 74) {			
+		while (x >= 0 && counter < 73) {			
 			System.out.println(c + " = " + s.hashCode());
 			c++;
 			s = String.valueOf(c);
@@ -81,21 +78,14 @@ public class TestMain {
 		}
 	}
 	
-	public static void lowerUpperTest(String string1) {
-				
-		System.out.println("Original string = " + string1);
-		System.out.println("Lower case = " + string1.toLowerCase());
-		System.out.println("Upper case = " + string1.toUpperCase());
-		
-		if (string1.equals(string1.toLowerCase()))
-			System.out.println("O->L: " + string1 + " = " + string1.toLowerCase());
-		else
-			System.out.println("O->L: " + string1 + " # " + string1.toLowerCase());
-		
-		if (string1.equals(string1.toUpperCase()))
-			System.out.println("O->U: " + string1 + " = " + string1.toUpperCase());
-		else
-			System.out.println("O->U: " + string1 + " # " + string1.toUpperCase());
+	public static int jHashCode(String word) {
+		int jhash = 0;
+		if (word.length() > 0) {
+			for (int i = 0; i < word.length(); i++) {
+				jhash += word.substring(i, i+1).hashCode();
+			}
+		}
+		return jhash;
 	}
 
 }
