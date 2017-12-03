@@ -3,10 +3,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Scanner;
-
 
 public class Mapping {
 	
@@ -14,43 +12,58 @@ public class Mapping {
 	private static BufferedReader reader;
 
 	//Run the programm
-	public static void run(String path, String encoding) throws IOException {
-			
+	public static void run() throws IOException {
+				
+		LinkedHashMap<Integer, ArrayList<String>> map = loadDic();
 		System.out.print("Γράψε ένα κείμενο φίλε μου: ");
-		LinkedHashMap<Integer, ArrayList<String>> map = putWordsInHashMap(path, encoding);
 	 	input = new Scanner(System.in);
 		String text = input.nextLine();
-		//searchDic(map,text);
+		searchDic(map,text);
 	}
 
-	//Put the words into the HashMap
-	public static LinkedHashMap<Integer, ArrayList<String>> putWordsInHashMap(String path, String encoding) throws IOException {
+	//Import the dictionary in a LinkedHashMap
+	public static LinkedHashMap<Integer, ArrayList<String>> loadDic() throws IOException {
 			
 		LinkedHashMap<Integer, ArrayList<String>> map = new LinkedHashMap<Integer, ArrayList<String>>();
-		reader = new BufferedReader(new InputStreamReader(new FileInputStream(path), encoding));
-		String nextWord = "";
-		while (nextWord != null) {
-			nextWord = reader.readLine();
-			if (map.containsKey(jHashCode(nextWord))) {
-				(map.get(jHashCode(nextWord))).add(nextWord);
+		reader = new BufferedReader(new InputStreamReader(new FileInputStream("C:/Users/CHRIS/Desktop/LAB/Java/Javelas/src/Greek.txt"), "UTF8"));
+		String nextWord = reader.readLine();
+		nextWord = reader.readLine();//Throw first line away, firstline = 575133 (not a word)
+		int nextWordHash = 0;
+		nextWordHash = jHashCode(nextWord);
+		//int counter = 0;
+		while (nextWord != null /*&& counter < 1000*/) {
+			if (map.containsKey(nextWordHash)) {
+				(map.get(nextWordHash)).add(nextWord);
 			} else {
 				ArrayList<String> list = new ArrayList<String>();
 				list.add(nextWord);
-				map.put(jHashCode(nextWord), list);
+				map.put(nextWordHash, list);
 			}
-		}			
+			//System.out.println(nextWord);//testing
+			nextWord = reader.readLine();
+			nextWordHash = jHashCode(nextWord);
+			//counter++;
+		}
+		System.out.println(map.size());//testing DO NOT TRY TO PRINT MAP (takes time, resource heavy)
 		return map;
 	}
 
-    //Check if a word exists in the dictionary.Every single word or character at the text should have space.
-	public static void searchDic(HashMap<String,Integer> map, String text) {
-		for(String retval: text.split(" ")) {
-			String copy_value = specialCharacters(retval).toLowerCase();
-			//testing
-			if (!map.containsKey(copy_value))
-				System.out.println(retval + " doesn't exist");
+    //Check if a word exists in the dictionary
+	public static void searchDic(LinkedHashMap<Integer, ArrayList<String>> map, String text) {
+		for(String word: text.split(" ")) {
+			word = specialCharacters(word);
+			word = word.substring(0, 1) + word.substring(1).toLowerCase();
+	
+			boolean wordExists = false;
+			
+			for (String wordInList: map.get(jHashCode(word))) {
+				if (wordInList.equals(word))
+					wordExists = true;
+			}
+			if (wordExists)
+				System.out.println(word + " exists");
 			else
-				System.out.println(retval + " exists");
+				System.out.println(word + " doesn't exist");
 		}
 	}
 
@@ -63,11 +76,15 @@ public class Mapping {
 	
 	public static int jHashCode(String word) {
 		int jhash = 0;
-		if (word.length() > 0) {
-			for (int i = 0; i < word.length(); i++) {
-				jhash += word.substring(i, i+1).hashCode();
+		if (word != null) {
+			if (word.length() > 0) {
+				for (int i = 0; i < word.length(); i++) {
+					jhash += word.substring(i, i+1).hashCode();
+				}
 			}
 		}
 		return jhash;
 	}
+
+
 }
