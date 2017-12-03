@@ -65,7 +65,7 @@ public class Mapping {
 			if (!wordExists) {
 				System.out.println(word + " doesn't exist");
 				Suggestions sug = new Suggestions(word);
-				sug.firstSuggestions();
+				sug.run();
 			}			
 			else 
 				System.out.println(word + " exists");						
