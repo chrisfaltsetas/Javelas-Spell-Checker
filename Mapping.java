@@ -10,22 +10,23 @@ public class Mapping {
 	
 	private static Scanner input;
 	private static BufferedReader reader;
+	static LinkedHashMap<Integer, ArrayList<String>> map = new LinkedHashMap<Integer, ArrayList<String>>();	
 
 	//Run the programm
 	public static void run() throws IOException {
 				
-		LinkedHashMap<Integer, ArrayList<String>> map = loadDic();
+		loadDic();
+		//System.out.println(map.size());//testing
 		System.out.print("Γράψε ένα κείμενο φίλε μου: ");
 	 	input = new Scanner(System.in);
 		String text = input.nextLine();
-		searchDic(map,text);
+		searchDic(text);
 	}
 
 	//Import the dictionary in a LinkedHashMap
-	public static LinkedHashMap<Integer, ArrayList<String>> loadDic() throws IOException {
-			
-		LinkedHashMap<Integer, ArrayList<String>> map = new LinkedHashMap<Integer, ArrayList<String>>();
-		reader = new BufferedReader(new InputStreamReader(new FileInputStream("C:/Users/CHRIS/Desktop/LAB/Java/Javelas/src/Greek.txt"), "UTF8"));
+	public static void loadDic() throws IOException {
+				
+		reader = new BufferedReader(new InputStreamReader(new FileInputStream("C:/Users/CHRIS/Desktop/LAB/Java/Javelas/sc/Greek.txt"), "UTF8"));
 		String nextWord = reader.readLine();
 		nextWord = reader.readLine();//Throw first line away, firstline = 575133 (not a word)
 		int nextWordHash = 0;
@@ -44,15 +45,14 @@ public class Mapping {
 			nextWordHash = jHashCode(nextWord);
 			//counter++;
 		}
-		System.out.println(map.size());//testing DO NOT TRY TO PRINT MAP (takes time, resource heavy)
-		return map;
+		//System.out.println(map.size());//testing DO NOT TRY TO PRINT MAP (takes time ~3min, resource heavy)
 	}
 
     //Check if a word exists in the dictionary
-	public static void searchDic(LinkedHashMap<Integer, ArrayList<String>> map, String text) {
-		for(String word: text.split(" ")) {
+	public static void searchDic(String text) {
+		for (String word: text.split(" ")) {
 			word = specialCharacters(word);
-			word = word.substring(0, 1) + word.substring(1).toLowerCase();
+			//word = word.substring(0, 1) + word.substring(1).toLowerCase();
 	
 			boolean wordExists = false;
 			
