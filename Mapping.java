@@ -26,7 +26,7 @@ public class Mapping {
 	//Import the dictionary in a LinkedHashMap
 	public static void loadDic() throws IOException {
 				
-		reader = new BufferedReader(new InputStreamReader(new FileInputStream("C:/Users/CHRIS/Desktop/LAB/Java/Javelas/sc/Greek.txt"), "UTF8"));
+		reader = new BufferedReader(new InputStreamReader(new FileInputStream("C:/Users/CHRIS/Desktop/LAB/Java/Javelas/src/Greek.txt"), "UTF8"));
 		String nextWord = reader.readLine();
 		nextWord = reader.readLine();//Throw first line away, firstline = 575133 (not a word)
 		int nextWordHash = 0;
@@ -55,10 +55,11 @@ public class Mapping {
 			//word = word.substring(0, 1) + word.substring(1).toLowerCase();
 	
 			boolean wordExists = false;
-			
-			for (String wordInList: map.get(jHashCode(word))) {
-				if (wordInList.equals(word))
-					wordExists = true;
+			if (map.containsKey(jHashCode(word))) {
+				for (String wordInList: map.get(jHashCode(word))) {
+					if (wordInList.equals(word))
+						wordExists = true;
+				}
 			}
 			if (wordExists)
 				System.out.println(word + " exists");
