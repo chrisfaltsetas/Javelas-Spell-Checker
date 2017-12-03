@@ -1,6 +1,9 @@
+import java.util.ArrayList;
+
 public class Suggestions {
 	
 	private String word;
+	private ArrayList<String> suggestedWords;
 	
 	public Suggestions(String word){
 		this.setWord(word);	
@@ -23,7 +26,7 @@ public class Suggestions {
 		}
 		
 		if (wordExists)
-			System.out.println("Suggestion: " + word);
+			suggestedWords.add(word);
 		
 		
 		
@@ -38,7 +41,7 @@ public class Suggestions {
 		}
 		
 		if (wordExists)
-			System.out.println("Suggestion: " + word);
+			suggestedWords.add(word);
 		
 	}
 
