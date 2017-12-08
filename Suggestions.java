@@ -19,8 +19,8 @@ public class Suggestions {
 		word = word.substring(0, 1).toLowerCase() + word.substring(1).toLowerCase();
 		
 		boolean wordExists = false;
-		if (Mapping.map.containsKey(Mapping.jHashCode(word))) {
-			for (String wordInList: Mapping.map.get(Mapping.jHashCode(word))) {
+		if (Dictionary.map.containsKey(Dictionary.jHashCode(word))) {
+			for (String wordInList: Dictionary.map.get(Dictionary.jHashCode(word))) {
 				if (wordInList.equals(word))
 					wordExists = true;
 			}
@@ -34,8 +34,8 @@ public class Suggestions {
 		word = word.substring(0, 1).toUpperCase() + word.substring(1).toLowerCase();
 		
 		wordExists = false;
-		if (Mapping.map.containsKey(Mapping.jHashCode(word))) {
-			for (String wordInList: Mapping.map.get(Mapping.jHashCode(word))) {
+		if (Dictionary.map.containsKey(Dictionary.jHashCode(word))) {
+			for (String wordInList: Dictionary.map.get(Dictionary.jHashCode(word))) {
 				if (wordInList.equals(word))
 					wordExists = true;
 			}
