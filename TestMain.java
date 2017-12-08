@@ -44,7 +44,7 @@ public class TestMain {
 		String nextWord = "Ν";
 		while (nextWord.equals("Ν")) {
 			try {
-				Mapping.run();
+				Dictionary.run();
 				input = new Scanner(System.in);
 				System.out.print("Θελεις να δοκιμασεις κι αλλη προταση φιλε μου; \nΓραψε Ν για ναι ή Ο για οχι: ");
 				nextWord = input.nextLine();
