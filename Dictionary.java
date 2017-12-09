@@ -35,20 +35,23 @@ public class Dictionary extends WordEdit {
 				
 		BufferedReader rdr = new BufferedReader(new InputStreamReader(new FileInputStream("dictionaries\\" + lang + ".txt"), "UTF8"));
 		String nextWord = rdr.readLine();
-		int nextWordHash = 0;
-		nextWordHash = jHashCode(nextWord);
+		
 		while (nextWord != null) {
-			if (this.dic.containsKey(nextWordHash)) {
-				(dic.get(nextWordHash)).add(nextWord);
-			} else {
-				ArrayList<String> list = new ArrayList<String>();
-				list.add(nextWord);
-				dic.put(nextWordHash, list);
-			}
+			addWord(nextWord);
 			nextWord = rdr.readLine();
-			nextWordHash = jHashCode(nextWord);
 		}
 		rdr.close();
+	}
+	
+	public void addWord(String word) {
+		int wordHash = jHashCode(word);
+		if (this.dic.containsKey(wordHash)) {
+			(dic.get(wordHash)).add(word);
+		} else {
+			ArrayList<String> list = new ArrayList<String>();
+			list.add(word);
+			dic.put(wordHash, list);
+		}
 	}
 
     //Check if a word exists in the dictionary
