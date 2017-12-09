@@ -21,9 +21,10 @@ public class Dictionary extends WordEdit {
 		dictionaries.add(this);
 	}
 	
-	public Dictionary() {
+	public Dictionary() throws IOException {
 		if (!customExists) {
 			this.dic = new LinkedHashMap<Integer, ArrayList<String>>();
+			setDic("custom");
 			this.lang = "custom";
 			dictionaries.add(this);
 			customExists = true;
