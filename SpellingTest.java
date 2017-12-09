@@ -8,22 +8,26 @@ public class SpellingTest {
 
 	public static void main(String[] args) throws IOException {
 		
-
-		Dictionary grDic = new Dictionary("Greek");
-		
-		menu();
+		Dictionary customDic = new Dictionary();
+		Dictionary grDic = new Dictionary("Greek", 73);
+		Dictionary enDic = new Dictionary("English", 58);
+						
 		String text = null;
 		Scanner input = new Scanner(System.in, "UTF8");
 		
-		int choice = input.nextInt();
+		menu();		
+		int choice = Integer.parseInt(input.nextLine());
 		
-		if (choice == 1) {
-			Scanner input1 = new Scanner(System.in, "UTF8");
+		if (choice == 0) {
+			System.out.println("The program will now exit.");
+		} else if (choice == 1) {			
 			System.out.print("Write a text: ");
-			text = input1.nextLine();
-			input1.close();
+			text = input.nextLine();
+			System.out.println(text);
+			checkSpellingTest(text);
 		} else if (choice == 2) {
-			BufferedReader rdr = new BufferedReader(new InputStreamReader(new FileInputStream("testTxt.txt"), "UTF8"));
+			System.out.print("Name of the txt file to be read: ");
+			BufferedReader rdr = new BufferedReader(new InputStreamReader(new FileInputStream(input.nextLine() + ".txt"), "UTF8"));
 			//Scanner in = new Scanner(rdr);
 			String line = rdr.readLine();
 			if (line != null) {
@@ -36,23 +40,27 @@ public class SpellingTest {
 			}
 			//System.out.println(text);
 			rdr.close();
+			checkSpellingTest(text);
 		} else {
 			System.out.println("Not a valid choice, the program will now exit.");
 		}
-		checkSpellingTest(text);
 		input.close();
-		
+		System.out.println("Thank you for using JavelasSpelling.");		
 	}
 	
 	public static void checkSpellingTest(String text) throws IOException {
 		
 		for (String word: text.split(" ")) {
+			boolean exists = false;
 			for (Dictionary dictionary: Dictionary.dictionaries) {
-				if (!dictionary.wordExists(word)) {
-					System.out.println(dictionary.specialCharacters(word) + " doesn't exist");
-					Suggestions sugg = new Suggestions(word);
-					sugg.getSuggestions();
+				if (dictionary.wordExists(word)) {
+					exists = true;
+					//System.out.println(word + " exists");
 				}
+			}
+			if (!exists) {
+				System.out.println(word + " doesn't exist.\nSuggestions: ");
+				new Suggestions(word).getSuggestions();
 			}
 		}
 		//System.out.print("Want to try another text? (Y/N): ");		

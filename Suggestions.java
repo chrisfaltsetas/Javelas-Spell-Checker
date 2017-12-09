@@ -30,12 +30,11 @@ public class Suggestions extends WordEdit {
 	}
 	
 	public void secondSuggestions() {
-		final int MAX_DISTANCE = 1;
-		final int RANGE = 73;
+		final int MAX_DISTANCE = 2;
 		for (Dictionary dictionary: Dictionary.dictionaries) {	
 			
-			int minHash = jHashCode(word) - (RANGE * MAX_DISTANCE);
-			int maxHash = jHashCode(word) + (RANGE * MAX_DISTANCE);
+			int minHash = jHashCode(word) - (dictionary.getRange() * MAX_DISTANCE);
+			int maxHash = jHashCode(word) + (dictionary.getRange() * MAX_DISTANCE);
 		
 			for (int i = minHash; i <= maxHash; i++) {
 				if (dictionary.getDic().containsKey(i)) {
@@ -47,8 +46,8 @@ public class Suggestions extends WordEdit {
 				}
 	        }
 		}
-    }
-	
+    }	
+
 	public int getLevenshteinDistance(String word2) {
 		
 		int length1 = word.length();
@@ -90,6 +89,10 @@ public class Suggestions extends WordEdit {
 
 	public void setWord(String word) {
 		this.word = word;
+	}
+
+	public ArrayList<String> getSuggestedWords() {
+		return suggestedWords;
 	}
 	
 }

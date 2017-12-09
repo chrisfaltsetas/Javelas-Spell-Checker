@@ -9,13 +9,15 @@ public class Dictionary extends WordEdit {
 	
 	private LinkedHashMap<Integer, ArrayList<String>> dic;
 	private String lang;
+	private int range;
 	static ArrayList<Dictionary> dictionaries = new ArrayList<Dictionary>();
 	private static boolean customExists = false;
 	
-	public Dictionary(String lang) throws IOException {
+	public Dictionary(String lang, int range) throws IOException {
 		this.dic = new LinkedHashMap<Integer, ArrayList<String>>();
 		setDic(lang);
 		this.lang = lang;
+		this.setRange(range);
 		dictionaries.add(this);
 	}
 	
@@ -57,6 +59,7 @@ public class Dictionary extends WordEdit {
 			for (String wordInList: dic.get(jHashCode(word))) {
 				if (wordInList.equals(word)) {
 					exists = true;
+					break;
 				}
 			}
 		}
@@ -65,9 +68,13 @@ public class Dictionary extends WordEdit {
 
 	//Ignore the special characters
 	public String specialCharacters(String word) {
-		if (word.length() >= 2)
-			word = word.substring(0, word.length() - 1) + word.substring(word.length() - 1).replaceAll("[^a-zA-Z&&[\\P{In" + lang + "}a-zA-Z]]", "");
+		if (word.length() >= 2) {
+			if (lang.equals("English"))
+				word = word.substring(0, word.length() - 1) + word.substring(word.length() - 1).replaceAll("[^a-zA-Z]", "");
+			else
+				word = word.substring(0, word.length() - 1) + word.substring(word.length() - 1).replaceAll("[\\P{In" + lang + "}a-zA-Z]", "");
 		//System.out.println(word);//testing
+		}
 		return word;
 	}	
 
@@ -81,6 +88,14 @@ public class Dictionary extends WordEdit {
 
 	public void setDicName(String dicName) {
 		this.lang = dicName;
+	}
+
+	public int getRange() {
+		return range;
+	}
+
+	public void setRange(int range) {
+		this.range = range;
 	}
 
 }
