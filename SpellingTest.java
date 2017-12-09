@@ -23,7 +23,7 @@ public class SpellingTest {
 		} else if (choice == 1) {			
 			System.out.print("Write a text: ");
 			text = input.nextLine();
-			System.out.println(text);
+			//System.out.println(text);
 			checkSpellingTest(text);
 		} else if (choice == 2) {
 			System.out.print("Name of the txt file to be read: ");
@@ -52,6 +52,7 @@ public class SpellingTest {
 		
 		for (String word: text.split(" ")) {
 			boolean exists = false;
+			word = word.substring(0, word.length() - 1) + word.substring(word.length() - 1).replaceAll("[^a-zA-Z&&[\\P{InGreek}a-zA-Z]]", "");
 			for (Dictionary dictionary: Dictionary.dictionaries) {
 				if (dictionary.wordExists(word)) {
 					exists = true;
@@ -59,7 +60,7 @@ public class SpellingTest {
 				}
 			}
 			if (!exists) {
-				System.out.println(word + " doesn't exist.\nSuggestions: ");
+				System.out.print(word + " doesn't exist.\nSuggestions: ");
 				new Suggestions(word).getSuggestions();
 			}
 		}

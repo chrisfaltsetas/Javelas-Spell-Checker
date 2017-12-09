@@ -73,7 +73,9 @@ public class Dictionary extends WordEdit {
 	//Ignore the special characters
 	public String specialCharacters(String word) {
 		if (word.length() >= 2) {
-			if (lang.equals("English"))
+			if (lang.equals("custom"))
+				word = word.substring(0, word.length() - 1) + word.substring(word.length() - 1).replaceAll("[^a-zA-Z&&[\\P{InGreek}a-zA-Z]]", "");
+			else if (lang.equals("English"))
 				word = word.substring(0, word.length() - 1) + word.substring(word.length() - 1).replaceAll("[^a-zA-Z]", "");
 			else
 				word = word.substring(0, word.length() - 1) + word.substring(word.length() - 1).replaceAll("[\\P{In" + lang + "}a-zA-Z]", "");
