@@ -31,7 +31,7 @@ public class Dictionary extends WordEdit {
 	//Import the dictionary in a LinkedHashMap
 	private void setDic(String lang) throws IOException {
 				
-		BufferedReader rdr = new BufferedReader(new InputStreamReader(new FileInputStream(lang + ".txt"), "UTF8"));
+		BufferedReader rdr = new BufferedReader(new InputStreamReader(new FileInputStream("dictionaries\\" + lang + ".txt"), "UTF8"));
 		String nextWord = rdr.readLine();
 		int nextWordHash = 0;
 		nextWordHash = jHashCode(nextWord);
