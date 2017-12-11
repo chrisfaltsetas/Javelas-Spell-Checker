@@ -15,7 +15,7 @@ public abstract class WordEdit {
 		return jhash;
 	}
 	
-	public static HashMap<String, ArrayList<String>> punctuationMap() {
+	public static String specialCharacters(String word) {
 		
 		HashMap<String,ArrayList<String>> punMap = new HashMap<String, ArrayList<String>>();
 		
@@ -61,9 +61,14 @@ public abstract class WordEdit {
 		punMap.put("start", start);
 		punMap.put("end", end);
 		
-		return punMap;
+		if (punMap.get(start).contains(word.substring(0, 1)))
+			word = word.substring(1);
+		if (word.substring(word.length() - 3).equals("..."))
+			word = word.substring(0, word.length() - 3);
+		if (punMap.get(end).contains(word.substring(word.length() - 1)))
+			word = word.substring(0, word.length() - 1);
 		
-		
+		return word;
 	}
 	
 }
