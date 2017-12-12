@@ -68,10 +68,10 @@ public abstract class WordEdit {
 		if (word.length() >= 2 && punMap.get("start").contains(word.substring(0, 1))) {
 			word = word.substring(1);
 		}
-		if (word.substring(word.length() - 3).equals("...")) {
+		if (word.length() >= 4 && word.substring(word.length() - 3).equals("...")) {
 			word = word.substring(0, word.length() - 3);
 		}
-		if (punMap.get("end").contains(word.substring(word.length() - 1))) {
+		if (word.length() >= 2 && punMap.get("end").contains(word.substring(word.length() - 1))) {
 			word = word.substring(0, word.length() - 1);
 		}
 		
