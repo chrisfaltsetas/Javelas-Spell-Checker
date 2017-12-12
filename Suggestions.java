@@ -30,7 +30,7 @@ public class Suggestions extends WordEdit {
 	}
 	
 	public void secondSuggestions() {
-		final int MAX_DISTANCE = 2;
+		final int MAX_DISTANCE = 1;
 		for (Dictionary dictionary: Dictionary.dictionaries) {	
 			
 			int minHash = jHashCode(word) - (dictionary.getRange() * MAX_DISTANCE);

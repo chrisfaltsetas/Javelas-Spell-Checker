@@ -7,8 +7,7 @@ import java.util.Scanner;
 public class SpellingTest {
 
 	public static void main(String[] args) {
-							
-		TestMain.test();
+						
 		String text = null;
 		Scanner input = new Scanner(System.in, "UTF8");
 		
@@ -56,6 +55,8 @@ public class SpellingTest {
 		Dictionary customDic = new Dictionary();
 		Dictionary grDic = new Dictionary("Greek", 73);
 		Dictionary enDic = new Dictionary("English", 58);
+		
+		WordEdit.createPunMap();
 		
 		for (String word: text.split(" ")) {
 			boolean exists = false;
