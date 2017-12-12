@@ -14,25 +14,25 @@ public class Dictionary extends WordEdit {
 	private static boolean customExists = false;
 	
 	public Dictionary(String lang, int range) throws IOException {
-		this.dic = new LinkedHashMap<Integer, ArrayList<String>>();
-		setDic(lang);
 		this.lang = lang;
+		this.dic = new LinkedHashMap<Integer, ArrayList<String>>();
+		setDic();		
 		this.setRange(range);
 		dictionaries.add(this);
 	}
 	
 	public Dictionary() throws IOException {
 		if (!customExists) {
-			this.dic = new LinkedHashMap<Integer, ArrayList<String>>();
-			setDic("custom");
 			this.lang = "custom";
+			this.dic = new LinkedHashMap<Integer, ArrayList<String>>();
+			setDic();
 			dictionaries.add(this);
 			customExists = true;
 		}
 	}
 	
 	//Import the dictionary in a LinkedHashMap
-	private void setDic(String lang) throws IOException {
+	private void setDic() throws IOException {
 				
 		BufferedReader rdr = new BufferedReader(new InputStreamReader(new FileInputStream("dictionaries\\" + lang + ".txt"), "UTF8"));
 		String nextWord = rdr.readLine();
@@ -69,20 +69,6 @@ public class Dictionary extends WordEdit {
 		}
 		return exists;
 	}
-
-	//Ignore the special characters
-	public String specialCharacters(String word) {
-		if (word.length() >= 2) {
-			if (lang.equals("custom"))
-				word = word.substring(0, word.length() - 1) + word.substring(word.length() - 1).replaceAll("[^a-zA-Z&&[\\P{InGreek}a-zA-Z]]", "");
-			else if (lang.equals("English"))
-				word = word.substring(0, word.length() - 1) + word.substring(word.length() - 1).replaceAll("[^a-zA-Z]", "");
-			else
-				word = word.substring(0, word.length() - 1) + word.substring(word.length() - 1).replaceAll("[\\P{In" + lang + "}a-zA-Z]", "");
-		//System.out.println(word);//testing
-		}
-		return word;
-	}	
 
 	public LinkedHashMap<Integer, ArrayList<String>> getDic() {
 		return dic;
