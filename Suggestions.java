@@ -31,10 +31,9 @@ public class Suggestions extends WordEdit {
 	
 	public void secondSuggestions() {
 		final int MAX_DISTANCE = 1;
-		for (Dictionary dictionary: Dictionary.dictionaries) {	
-			
-			int minHash = jHashCode(word) - (dictionary.getRange() * MAX_DISTANCE);
-			int maxHash = jHashCode(word) + (dictionary.getRange() * MAX_DISTANCE);
+		for (Dictionary dictionary: Dictionary.dictionaries) {
+			int minHash = jHashCode(word) - ((dictionary.getRange() + 974) * MAX_DISTANCE);
+			int maxHash = jHashCode(word) + ((dictionary.getRange() + 974) * MAX_DISTANCE);
 		
 			for (int i = minHash; i <= maxHash; i++) {
 				if (dictionary.getDic().containsKey(i)) {

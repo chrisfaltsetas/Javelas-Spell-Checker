@@ -3,7 +3,7 @@ import java.util.HashMap;
 
 public abstract class WordEdit {
 
-	private static HashMap<String,ArrayList<String>> punMap = new HashMap<String, ArrayList<String>>();
+	private static HashMap<String, ArrayList<String>> punMap = new HashMap<String, ArrayList<String>>();
 	
 	public static int jHashCode(String word) {
 		int jhash = 0;
