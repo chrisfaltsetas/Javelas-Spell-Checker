@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public abstract class WordEdit {
+public abstract class Word {
 
 	private static HashMap<String, ArrayList<String>> punMap = new HashMap<String, ArrayList<String>>();
 	
@@ -33,12 +33,12 @@ public abstract class WordEdit {
 		start.add("-");
 		start.add("<");
 		start.add("~");
-		start.add("«");
-		start.add("£");
-		start.add("¥");
-		start.add("€");
+		start.add("Â«");
+		start.add("Â£");
+		start.add("Â¥");
+		start.add("â‚¬");
 		
-		end.add("»");
+		end.add("Â»");
 		end.add("!");
 		end.add("$");
 		end.add("%");
@@ -53,10 +53,10 @@ public abstract class WordEdit {
 		end.add(":");
 		end.add(";");
 		end.add("?");
-		end.add("»");
-		end.add("€");
-		end.add("£");
-		end.add("¥");
+		end.add("Â»");
+		end.add("â‚¬");
+		end.add("Â£");
+		end.add("Â¥");
 		
 		punMap.put("start", start);
 		punMap.put("end", end);
