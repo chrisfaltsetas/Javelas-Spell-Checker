@@ -2,6 +2,8 @@ import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintStream;
+import java.io.UnsupportedEncodingException;
 import java.util.Scanner;
 
 public class SpellingTest {
@@ -10,6 +12,11 @@ public class SpellingTest {
 						
 		String text = null;
 		Scanner input = new Scanner(System.in, "UTF8");
+		try {
+			System.setOut(new PrintStream(System.out, true, "UTF8"));			
+		} catch (UnsupportedEncodingException e) {
+			System.out.println("Encoding is not supported. " + e);
+		}
 		
 		menu();		
 		int choice = Integer.parseInt(input.nextLine());
@@ -46,17 +53,21 @@ public class SpellingTest {
 				System.out.println("Not a valid choice, the program will now exit.");
 			}
 		} catch (IOException iOException) {
-			System.err.println("Could not find any input: " + iOException);
+			System.err.println("Could not get any text to check: " + iOException);
 		}
 		input.close();
 		System.out.println("Thank you for using JavelasSpelling.");		
 	}
 	
-	public static void checkSpellingTest(String text) throws IOException {
+	public static void checkSpellingTest(String text) {
 		
-		Dictionary customDic = new Dictionary();
-		Dictionary grDic = new Dictionary("Greek", 73);
-		Dictionary enDic = new Dictionary("English", 58);
+		try {
+			Dictionary customDic = new Dictionary();
+			Dictionary grDic = new Dictionary("Greek", 73);
+			Dictionary enDic = new Dictionary("English", 58);
+		} catch (IOException iOException) { 
+			System.err.println("Could not find the dictionary .txt files in your computer: " + iOException);
+		}
 		
 		Word.createPunMap();		
 		Word word = new Word(null);
@@ -74,7 +85,8 @@ public class SpellingTest {
 				}
 			}
 			if (!exists) {
-				System.out.println("The word \"" + word + "\" doesn't exist.\n" + new Suggestions(word));				
+				System.out.println("The word \"" + word + "\" doesn't exist.\n" + new Suggestions(word));
+				
 			}		
 		}	
 	}

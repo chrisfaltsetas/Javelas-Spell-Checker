@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Suggestions {
 	
@@ -78,6 +79,22 @@ public class Suggestions {
 				
 		return distanceMap[length2][length1];
 		
+	}
+
+	public void handleMistake() {
+		System.out.print("What do you want to do:\n"
+				+ "1) Get suggestions\n"
+				+ "2) Skip\n"
+				+ "3) Add to dictionary\n"
+				+ "Choice: ");
+		Scanner input = new Scanner(System.in);
+		int choice = input.nextInt();
+		
+		if (choice == 1) {
+			
+		} else if (choice == 3) {
+			
+		}
 	}
 
 	public String toString() {
