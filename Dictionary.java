@@ -5,63 +5,67 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
-public class Dictionary extends WordEdit {
-	
-	private LinkedHashMap<Integer, ArrayList<String>> dic;
+public class Dictionary {
+
+	private LinkedHashMap<Integer, ArrayList<Word>> dic;
 	private String lang;
 	private int range;
+	
 	static ArrayList<Dictionary> dictionaries = new ArrayList<Dictionary>();
 	private static boolean customExists = false;
-	
+
 	public Dictionary(String lang, int range) throws IOException {
 		this.lang = lang;
-		this.dic = new LinkedHashMap<Integer, ArrayList<String>>();
-		setDic();		
+		this.dic = new LinkedHashMap<Integer, ArrayList<Word>>();
+		setDic();
 		this.setRange(range);
 		dictionaries.add(this);
 	}
-	
+
 	public Dictionary() throws IOException {
 		if (!customExists) {
 			this.lang = "custom";
-			this.dic = new LinkedHashMap<Integer, ArrayList<String>>();
+			this.dic = new LinkedHashMap<Integer, ArrayList<Word>>();
 			setDic();
 			dictionaries.add(this);
 			customExists = true;
 		}
 	}
-	
-	//Import the dictionary in a LinkedHashMap
+
+	// Import the dictionary in a LinkedHashMap
 	private void setDic() throws IOException {
-				
-		BufferedReader rdr = new BufferedReader(new InputStreamReader(new FileInputStream("dictionaries\\" + lang + ".txt"), "UTF8"));
+
+		BufferedReader rdr = new BufferedReader(
+				new InputStreamReader(new FileInputStream("dictionaries\\" + lang + ".txt"), "UTF8"));
 		String nextWord = rdr.readLine();
-		
+		if (nextWord != null && nextWord.length() >= 2 && nextWord.substring(0, 1).equals("\ufeff"))
+			nextWord = nextWord.substring(1);
+
 		while (nextWord != null) {
-			addWord(nextWord);
+			addWord(new Word(nextWord));
 			nextWord = rdr.readLine();
 		}
 		rdr.close();
 	}
-	
-	public void addWord(String word) {
-		int wordHash = jHashCode(word);
+
+	public void addWord(Word word) {
+		int wordHash = word.hashCode();
 		if (this.dic.containsKey(wordHash)) {
 			(dic.get(wordHash)).add(word);
 		} else {
-			ArrayList<String> list = new ArrayList<String>();
+			ArrayList<Word> list = new ArrayList<Word>();
 			list.add(word);
 			dic.put(wordHash, list);
 		}
 	}
 
-    //Check if a word exists in the dictionary
-	public boolean wordExists(String word) {
-		word = specialCharacters(word);
+	// Check if a word exists in the dictionary
+	public boolean wordExists(Word word) {
 		boolean exists = false;
-		if (dic.containsKey(jHashCode(word))) {
-			for (String wordInList: dic.get(jHashCode(word))) {
-				if (wordInList.equals(word)) {
+		int wordHash = word.hashCode();
+		if (dic.containsKey(wordHash)) {
+			for (Word wordInList : dic.get(wordHash)) {
+				if (wordInList.getWordStr().equals(word.getWordStr())) {
 					exists = true;
 					break;
 				}
@@ -69,8 +73,12 @@ public class Dictionary extends WordEdit {
 		}
 		return exists;
 	}
+	
+	public String toString() {
+		return lang + " dictionary";
+	}
 
-	public LinkedHashMap<Integer, ArrayList<String>> getDic() {
+	public LinkedHashMap<Integer, ArrayList<Word>> getDic() {
 		return dic;
 	}
 

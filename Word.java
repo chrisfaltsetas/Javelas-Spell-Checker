@@ -1,20 +1,14 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public abstract class Word {
+public class Word {
 
-	private static HashMap<String, ArrayList<String>> punMap = new HashMap<String, ArrayList<String>>();
+	public static HashMap<String, ArrayList<String>> punMap = new HashMap<String, ArrayList<String>>();
 	
-	public static int jHashCode(String word) {
-		int jhash = 0;
-		if (word != null) {
-			if (word.length() > 0) {
-				for (int i = 0; i < word.length(); i++) {
-					jhash += word.substring(i, i+1).hashCode();
-				}
-			}
-		}
-		return jhash;
+	private String wordStr;
+	
+	public Word(String word) {
+		this.wordStr = word;
 	}
 	
 	public static void createPunMap() {
@@ -33,12 +27,12 @@ public abstract class Word {
 		start.add("-");
 		start.add("<");
 		start.add("~");
-		start.add("Â«");
-		start.add("Â£");
-		start.add("Â¥");
-		start.add("â‚¬");
+		start.add("«");
+		start.add("£");
+		start.add("¥");
+		start.add("€");
 		
-		end.add("Â»");
+		end.add("»");
 		end.add("!");
 		end.add("$");
 		end.add("%");
@@ -53,29 +47,52 @@ public abstract class Word {
 		end.add(":");
 		end.add(";");
 		end.add("?");
-		end.add("Â»");
-		end.add("â‚¬");
-		end.add("Â£");
-		end.add("Â¥");
+		end.add("»");
+		end.add("€");
+		end.add("£");
+		end.add("¥");
 		
 		punMap.put("start", start);
 		punMap.put("end", end);
 	}
 	
-	public static String specialCharacters(String word) {
+	public void specialCharacters() {		
 		
-		
-		if (word.length() >= 2 && punMap.get("start").contains(word.substring(0, 1))) {
-			word = word.substring(1);
+		if (wordStr.length() >= 2 && punMap.get("start").contains(wordStr.substring(0, 1))) {
+			wordStr = wordStr.substring(1);
 		}
-		if (word.length() >= 4 && word.substring(word.length() - 3).equals("...")) {
-			word = word.substring(0, word.length() - 3);
+		if (wordStr.length() >= 4 && wordStr.substring(wordStr.length() - 3).equals("...")) {
+			wordStr = wordStr.substring(0, wordStr.length() - 3);
 		}
-		if (word.length() >= 2 && punMap.get("end").contains(word.substring(word.length() - 1))) {
-			word = word.substring(0, word.length() - 1);
+		if (wordStr.length() >= 2 && punMap.get("end").contains(wordStr.substring(wordStr.length() - 1))) {
+			wordStr = wordStr.substring(0, wordStr.length() - 1);
 		}
-		
-		return word;
+	}
+	
+	@Override
+	public int hashCode() {
+		int jhash = 0;
+		if (wordStr != null) {
+			if (wordStr.length() > 0) {
+				for (int i = 0; i < wordStr.length(); i++) {
+					jhash += wordStr.substring(i, i+1).hashCode();
+				}
+			}
+		}
+		return jhash;
+	}
+	
+	public String toString() {
+		return getWordStr();
+	}
+	
+	public String getWordStr() {
+		return wordStr;
+	}
+
+	public void setWordStr(String wordStr) {
+		this.wordStr = wordStr;
+		specialCharacters();
 	}
 	
 }

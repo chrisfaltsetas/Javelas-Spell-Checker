@@ -26,6 +26,8 @@ public class SpellingTest {
 				System.out.print("Name of the txt file to be read: ");
 				BufferedReader rdr = new BufferedReader(new InputStreamReader(new FileInputStream(input.nextLine() + ".txt"), "UTF8"));
 				String line = rdr.readLine();
+				if (line != null && line.length() >= 2 && line.substring(0, 1).equals("\ufeff"))
+					line = line.substring(1);
 				if (line != null) {
 					text = line + " ";
 					line = rdr.readLine();
@@ -56,21 +58,24 @@ public class SpellingTest {
 		Dictionary grDic = new Dictionary("Greek", 73);
 		Dictionary enDic = new Dictionary("English", 58);
 		
-		WordEdit.createPunMap();
+		Word.createPunMap();		
+		Word word = new Word(null);
 		
-		for (String word: text.split(" ")) {
+		for (String wordStr: text.split(" ")) {
 			boolean exists = false;
-			word = WordEdit.specialCharacters(word);
+			word.setWordStr(wordStr);
 			for (Dictionary dictionary: Dictionary.dictionaries) {
 				if (dictionary.wordExists(word)) {
 					exists = true;
-					//System.out.println(word + " exists");
+				}
+				
+				if (word.getWordStr().length() >= 2 && dictionary.wordExists(new Word(word.getWordStr().substring(0, 1).toLowerCase() + word.getWordStr().substring(1)))) {
+					exists = true;
 				}
 			}
 			if (!exists) {
-				System.out.print(word + " doesn't exist.\nSuggestions: ");
-				new Suggestions(word).getSuggestions();
-			}
+				System.out.println("The word \"" + word + "\" doesn't exist.\n" + new Suggestions(word));				
+			}		
 		}	
 	}
 	

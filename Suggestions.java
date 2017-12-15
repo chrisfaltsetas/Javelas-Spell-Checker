@@ -1,25 +1,21 @@
 import java.util.ArrayList;
 
-public class Suggestions extends WordEdit {
+public class Suggestions {
 	
-	private String word;
-	private ArrayList<String> suggestedWords;
+	private Word word;
+	private ArrayList<Word> suggestedWords;
 	
-	public Suggestions(String word){
+	public Suggestions(Word word){
 		this.word = word;
-		this.suggestedWords = new ArrayList<String>();
-	}
-		
-	public void getSuggestions() {
+		this.suggestedWords = new ArrayList<Word>();
 		firstSuggestions();
 		secondSuggestions();
-		System.out.println(suggestedWords);
-	}
+	}		
 	
 	public void firstSuggestions() {
-		if (word.length() >= 2) {
-			String wordL = word.substring(0, 1).toLowerCase() + word.substring(1).toLowerCase();
-			String wordU = word.substring(0, 1).toUpperCase() + word.substring(1).toLowerCase();
+		if (word.getWordStr().length() >= 2) {
+			Word wordL = new Word(word.getWordStr().toLowerCase());
+			Word wordU = new Word(word.getWordStr().substring(0, 1).toUpperCase() + word.getWordStr().substring(1).toLowerCase());
 			for (Dictionary dictionary: Dictionary.dictionaries) {
 				if (dictionary.wordExists(wordL))
 					suggestedWords.add(wordL);
@@ -32,12 +28,12 @@ public class Suggestions extends WordEdit {
 	public void secondSuggestions() {
 		final int MAX_DISTANCE = 1;
 		for (Dictionary dictionary: Dictionary.dictionaries) {
-			int minHash = jHashCode(word) - ((dictionary.getRange() + 974) * MAX_DISTANCE);
-			int maxHash = jHashCode(word) + ((dictionary.getRange() + 974) * MAX_DISTANCE);
-		
+			int minHash = word.hashCode() - ((dictionary.getRange() + 974) * MAX_DISTANCE);
+			int maxHash = word.hashCode() + ((dictionary.getRange() + 974) * MAX_DISTANCE);
+			
 			for (int i = minHash; i <= maxHash; i++) {
 				if (dictionary.getDic().containsKey(i)) {
-					for (String wordInList: dictionary.getDic().get(i)) {
+					for (Word wordInList: dictionary.getDic().get(i)) {
 						if (getLevenshteinDistance(wordInList) <= MAX_DISTANCE) {
 							suggestedWords.add(wordInList);
 		                }
@@ -47,9 +43,11 @@ public class Suggestions extends WordEdit {
 		}
     }	
 
-	public int getLevenshteinDistance(String word2) {
+	public int getLevenshteinDistance(Word wordX) {
 		
-		int length1 = word.length();
+		String word1 = word.getWordStr();
+		String word2 = wordX.getWordStr();
+		int length1 = word1.length();
 		int length2 = word2.length();
 		
 		int[][] distanceMap = new int[length2 + 1][length1 + 1];
@@ -65,7 +63,7 @@ public class Suggestions extends WordEdit {
 		for (int i = 0; i < length2; i++) {
 			char char2 = word2.charAt(i);
 			for (int j = 0; j < length1; j++) {
-				char char1 = word.charAt(j);
+				char char1 = word1.charAt(j);
 				
 				int topleft = distanceMap[i][j];
 				int top = distanceMap[i][j + 1];
@@ -82,15 +80,30 @@ public class Suggestions extends WordEdit {
 		
 	}
 
-	public String getWord() {
+	public String toString() {
+
+		String sug = "\n\t\t";
+		int counter = 0;
+		for (Word word: suggestedWords) {
+			counter++;
+			sug += String.valueOf(counter) + ") " + word.getWordStr() + "\n\t\t";
+		}
+		if (counter == 0)
+			return "There are no suggestions";
+		else
+			return "\tSuggestions for \"" + word + "\": " + sug;
+	}
+
+
+	public Word getWord() {
 		return word;
 	}
 
-	public void setWord(String word) {
+	public void setWord(Word word) {
 		this.word = word;
 	}
 
-	public ArrayList<String> getSuggestedWords() {
+	public ArrayList<Word> getSuggestedWords() {
 		return suggestedWords;
 	}
 	
