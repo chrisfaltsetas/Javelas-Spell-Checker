@@ -1,14 +1,4 @@
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Suggestions {
 	
@@ -89,34 +79,6 @@ public class Suggestions {
 		return distanceMap[length2][length1];
 		
 	}
-
-	public void handleMistake() {
-		System.out.print("The word \"" + word + "\" doesn't exist\n"
-				+ "What do you want to do:\n"
-				+ "1) Get suggestions\n"
-				+ "2) Skip\n"
-				+ "3) Add to dictionary\n"
-				+ "Choice: ");
-		Scanner input = new Scanner(System.in);
-		int choice = input.nextInt();
-		input.close();
-		
-		if (choice == 1) {
-			System.out.println(this);
-		} else if (choice == 3) {
-			try {
-				Dictionary.dictionaries.get(0).addWord(word);
-				BufferedWriter wtr = 
-						new BufferedWriter(new OutputStreamWriter(new FileOutputStream("dictionaries\\custom.txt", true), "UTF8"));
-				wtr.write(word.getWordStr());
-				wtr.newLine();
-				wtr.close();
-			} catch (IOException iOException) {
-				System.err.println("Could not find custom dictionary: " + iOException);
-			}
-			
-		}
-	}
 	
 	public String toString() {
 
@@ -127,7 +89,7 @@ public class Suggestions {
 			sug += String.valueOf(counter) + ") " + word.getWordStr() + "\n\t\t";
 		}
 		if (counter == 0)
-			return "There are no suggestions";
+			return "\tThere are no suggestions for the word \"" + word + "\"\n";
 		else
 			return "\tSuggestions for \"" + word + "\": " + sug;
 	}

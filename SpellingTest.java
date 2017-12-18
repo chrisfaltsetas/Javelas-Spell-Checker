@@ -1,7 +1,10 @@
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
 import java.util.Scanner;
@@ -18,7 +21,7 @@ public class SpellingTest {
 			System.out.println("Encoding is not supported. " + e);
 		}
 		
-		menu();		
+		printTextMenu();		
 		int choice = Integer.parseInt(input.nextLine());
 		
 		try {
@@ -71,6 +74,7 @@ public class SpellingTest {
 		
 		Word.createPunMap();		
 		Word word = new Word(null);
+		Scanner input = new Scanner(System.in);
 		
 		for (String wordStr: text.split(" ")) {
 			boolean exists = false;
@@ -85,13 +89,19 @@ public class SpellingTest {
 				}
 			}
 			if (!exists) {
-				new Suggestions(word).handleMistake();
-				
+				word.printMistakeMenu();				
+				int choice = input.nextInt();				
+				while (choice < 1 || choice > 4) {
+					System.out.print("Invalid choice. Please try again.\nChoice: ");
+					choice = new Scanner(System.in).nextInt();
+				}
+				word.handleMistake(choice);				
 			}		
-		}	
+		}
+		input.close();
 	}
 	
-	public static void menu() {
+	public static void printTextMenu() {
 		System.out.print("What do you want to do:\n"
 				+ "1) Write text\n"
 				+ "2) Import .txt file\n"
@@ -100,4 +110,6 @@ public class SpellingTest {
 				+ "0) Exit program\n"
 				+ "Choice: ");
 	}
+	
+	
 }
