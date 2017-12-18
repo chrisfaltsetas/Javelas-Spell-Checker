@@ -85,7 +85,7 @@ public class SpellingTest {
 				}
 			}
 			if (!exists) {
-				System.out.println("The word \"" + word + "\" doesn't exist.\n" + new Suggestions(word));
+				new Suggestions(word).handleMistake();
 				
 			}		
 		}	
