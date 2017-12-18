@@ -107,8 +107,9 @@ public class Suggestions {
 			try {
 				Dictionary.dictionaries.get(0).addWord(word);
 				BufferedWriter wtr = 
-						new BufferedWriter(new OutputStreamWriter(new FileOutputStream("dictionaries\\custom.txt"), "UTF8"));
-				wtr.write(word.getWordStr(), 0, word.getWordStr().length());
+						new BufferedWriter(new OutputStreamWriter(new FileOutputStream("dictionaries\\custom.txt", true), "UTF8"));
+				wtr.write(word.getWordStr());
+				wtr.newLine();
 				wtr.close();
 			} catch (IOException iOException) {
 				System.err.println("Could not find custom dictionary: " + iOException);
