@@ -13,15 +13,17 @@ public class Dictionary {
 	private LinkedHashMap<Integer, ArrayList<Word>> dic;
 	private String lang;
 	private int range;
+	private int addRemoveLetter;
 	
 	static ArrayList<Dictionary> dictionaries = new ArrayList<Dictionary>();
 	private static boolean customExists = false;
 
-	public Dictionary(String lang, int range) throws IOException {
+	public Dictionary(String lang, int range, int addRemoveLetter) throws IOException {
 		this.lang = lang;
 		this.dic = new LinkedHashMap<Integer, ArrayList<Word>>();
 		setDic();
 		this.setRange(range);
+		this.addRemoveLetter = addRemoveLetter;
 		dictionaries.add(this);
 	}
 
@@ -115,6 +117,10 @@ public class Dictionary {
 
 	public void setRange(int range) {
 		this.range = range;
+	}
+
+	public int getAddRemoveLetter() {
+		return addRemoveLetter;
 	}
 
 }

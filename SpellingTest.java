@@ -63,8 +63,8 @@ public class SpellingTest {
 		
 		try {
 			Dictionary customDic = new Dictionary();
-			Dictionary grDic = new Dictionary("Greek", 73);
-			Dictionary enDic = new Dictionary("English", 58);
+			Dictionary grDic = new Dictionary("Greek", 73, 974);
+			Dictionary enDic = new Dictionary("English", 58, 122);
 		} catch (IOException iOException) { 
 			System.err.println("Could not find the dictionary .txt files in your computer: " + iOException);
 		}
@@ -77,12 +77,16 @@ public class SpellingTest {
 			boolean exists = false;
 			word.setWordStr(wordStr);
 			for (Dictionary dictionary: Dictionary.dictionaries) {
-				if (dictionary.wordExists(word)) {
+				if (word.getWordStr().matches("-?\\d+(\\.\\d+)+(\\,\\d+)?") || word.getWordStr().matches("-?\\d+(\\,\\d+)+(\\.\\d+)?")) {
 					exists = true;
-				}
-				
-				if (word.getWordStr().length() >= 2 && dictionary.wordExists(new Word(word.getWordStr().substring(0, 1).toLowerCase() + word.getWordStr().substring(1)))) {
-					exists = true;
+				} else {
+					if (dictionary.wordExists(word)) {
+						exists = true;
+					}
+					
+					if (word.getWordStr().length() >= 2 && dictionary.wordExists(new Word(word.getWordStr().substring(0, 1).toLowerCase() + word.getWordStr().substring(1)))) {
+						exists = true;
+					}
 				}
 			}
 			if (!exists) {

@@ -28,8 +28,8 @@ public class Suggestions {
 	public void secondSuggestions() {
 		final int MAX_DISTANCE = 1;
 		for (Dictionary dictionary: Dictionary.dictionaries) {
-			int minHash = word.hashCode() - ((dictionary.getRange() + 974) * MAX_DISTANCE);
-			int maxHash = word.hashCode() + ((dictionary.getRange() + 974) * MAX_DISTANCE);
+			int minHash = word.hashCode() - ((dictionary.getRange() + dictionary.getAddRemoveLetter()) * MAX_DISTANCE);
+			int maxHash = word.hashCode() + ((dictionary.getRange() + dictionary.getAddRemoveLetter()) * MAX_DISTANCE);
 			
 			for (int i = minHash; i <= maxHash; i++) {
 				if (dictionary.getDic().containsKey(i)) {
