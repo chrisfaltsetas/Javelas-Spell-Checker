@@ -1,7 +1,10 @@
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
@@ -57,6 +60,22 @@ public class Dictionary {
 			list.add(word);
 			dic.put(wordHash, list);
 		}
+	}
+	
+	public void addWordPermanently(Word word) {
+		addWord(word);
+		if (this.getDicName().equals("custom")) {
+			try {				
+				BufferedWriter wtr = 
+						new BufferedWriter(new OutputStreamWriter(new FileOutputStream("dictionaries\\custom.txt", true), "UTF8"));
+				wtr.write(word.getWordStr());
+				wtr.newLine();
+				wtr.close();
+			} catch (IOException iOException) {
+				System.err.println("Could not find custom dictionary: " + iOException);
+			}
+		}
+		
 	}
 
 	// Check if a word exists in the dictionary

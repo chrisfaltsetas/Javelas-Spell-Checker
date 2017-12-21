@@ -1,10 +1,6 @@
-import java.io.BufferedWriter;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Scanner;
+
 
 public class Word {
 
@@ -76,35 +72,20 @@ public class Word {
 	
 	public void printMistakeMenu() {
 		System.out.print("The word \"" + this + "\" doesn't exist.\n"
-				+ "\t1) Get suggestions\n"
-				+ "\t2) Skip\n"
-				+ "\t3) Skip all\n"
-				+ "\t4) Add to dictionary\n"
+				+ new Suggestions(this) + "\n"
+				+ "\t1) Skip this word\n"
+				+ "\t2) Skip this word every time\n"
+				+ "\t3) Add to dictionary\n"
 				+ "\tChoice: ");
 	}
 	
 	public void handleMistake(int choice) {
-				
-		while (choice < 1 || choice > 4) {
-			System.out.println("Invalid choice. Please try again.\nChoice: ");
-			choice = new Scanner(System.in).nextInt();
-		}
-		
-		if (choice == 1) {
-			System.out.println(new Suggestions(this));
+		if (choice == 2) {
+			Dictionary.dictionaries.get(0).addWord(this);
+			//adds this word to the dictionary until the program is closed
 		} else if (choice == 3) {
-			Dictionary.dictionaries.get(0).addWord(this);
-		} else if (choice == 4) {
-			Dictionary.dictionaries.get(0).addWord(this);
-			try {				
-				BufferedWriter wtr = 
-						new BufferedWriter(new OutputStreamWriter(new FileOutputStream("dictionaries\\custom.txt", true), "UTF8"));
-				wtr.write(getWordStr());
-				wtr.newLine();
-				wtr.close();
-			} catch (IOException iOException) {
-				System.err.println("Could not find custom dictionary: " + iOException);
-			}				
+			Dictionary.dictionaries.get(0).addWordPermanently(this);
+			//adds this word permanently to the dictionary
 		}
 	}
 	
