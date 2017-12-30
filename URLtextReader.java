@@ -8,7 +8,7 @@ import javax.swing.text.html.parser.ParserDelegator;
 
 public class  URLtextReader extends HTMLEditorKit.ParserCallback {
 	
-	private StringBuffer s;
+    private StringBuffer s;
 
     public URLtextReader() {
     }
@@ -16,7 +16,6 @@ public class  URLtextReader extends HTMLEditorKit.ParserCallback {
     public void parse(BufferedReader in) throws IOException {
         s = new StringBuffer();
         ParserDelegator delegator = new ParserDelegator();
-        // the third parameter is TRUE to ignore charset directive
         delegator.parse(in, this, Boolean.TRUE);
     }
 
@@ -33,17 +32,15 @@ public class  URLtextReader extends HTMLEditorKit.ParserCallback {
     	try {
     	URL link = new URL(url);//put the URL
 	    BufferedReader in = new BufferedReader(new InputStreamReader(link.openStream(),"UTF8"));
-        //FileReader in = new FileReader("java-new.html");
 	    parse(in);
 	    in.close();
-	   // System.out.println(getText());
     	} catch (Exception e) {
-    		 System.out.println("THIS IS NOT A FUCKING URL OR CHANGE WIND PUT VODAFONE");
+            System.out.println("THIS IS NOT A FUCKING URL OR CHANGE WIND PUT VODAFONE");
     	}
 	    
     }
 
-    public static void main( String args[]) {
+    public static void main(String args[]) {
     	System.out.println("PUT THE FUCKING URL MO111111!!!!!1111!1!1!!!!1ENA");
     	Scanner readUrl = new Scanner(System.in);
     	String url = readUrl.nextLine();
