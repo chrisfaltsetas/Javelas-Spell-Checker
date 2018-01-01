@@ -24,11 +24,16 @@ public class SpellingTest {
 		try {
 			if (choice == 0) {
 				System.out.println("The program will now exit.");
+				
 			} else if (choice == 1) {			
 				System.out.print("Write a text: ");
 				text = input.nextLine();
 				//System.out.println(text);
-				checkSpellingTest(text);
+				if (text != null && !text.isEmpty())
+					checkSpellingTest(text);
+				else
+					System.out.println("The input given was empty.");
+				
 			} else if (choice == 2) {
 				System.out.print("Name of the txt file to be read: ");
 				BufferedReader rdr = new BufferedReader(new InputStreamReader(new FileInputStream(input.nextLine() + ".txt"), "UTF8"));
@@ -45,10 +50,19 @@ public class SpellingTest {
 				}
 				//System.out.println(text);
 				rdr.close();
-				if (text != null)
+				if (text != null && !text.isEmpty())
 					checkSpellingTest(text);
 				else
 					System.out.println("The file given was empty.");
+				
+			} else if(choice == 3) {
+				System.out.print("Give URL: ");
+				String url = input.nextLine();
+				text = new URLtextReader().removeHTMLTags(url);
+				//System.out.println(text);//testing
+				if (text != null && !text.isEmpty())
+					checkSpellingTest(text);
+				
 			} else {
 				System.out.println("Not a valid choice, the program will now exit.");
 			}
@@ -106,11 +120,8 @@ public class SpellingTest {
 		System.out.print("What do you want to do:\n"
 				+ "1) Write text\n"
 				+ "2) Import .txt file\n"
-				+ "3) Import .doc file\n"
-				+ "4) Give URL\n"
+				+ "3) Give URL\n"
 				+ "0) Exit program\n"
 				+ "Choice: ");
-	}
-	
-	
+	}		
 }
