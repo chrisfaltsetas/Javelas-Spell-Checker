@@ -5,7 +5,7 @@
  */
 package project4;
 
-import BunifuDrag.BunifuDrag;
+//import BunifuDrag.BunifuDrag;
 import java.awt.MouseInfo;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,15 +15,16 @@ import java.time.LocalDateTime;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
-import javafx.util.converter.LocalDateTimeStringConverter;
+//import javafx.util.converter.LocalDateTimeStringConverter;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
+import  javax.swing.JFrame;
 
 /**
  *
  * @author proxc
  */
-public class Home4 extends javax.swing.JFrame {
+public class Home4 extends JFrame {
 
     /**
      * Creates new form Home41
@@ -170,7 +171,7 @@ public class Home4 extends javax.swing.JFrame {
         jTextField1.setBackground(new java.awt.Color(36, 47, 65));
         jTextField1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jTextField1.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField1.setText("Enter you fullname");
+        jTextField1.setText("Enter your fullname");
         jTextField1.setBorder(null);
         jTextField1.setDisabledTextColor(new java.awt.Color(204, 204, 204));
         jTextField1.addMouseListener(new java.awt.event.MouseAdapter() {
