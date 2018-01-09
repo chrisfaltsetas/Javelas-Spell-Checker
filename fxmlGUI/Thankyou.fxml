@@ -2,36 +2,25 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #0a2249;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
-   <top>
-      <AnchorPane prefHeight="70.0" prefWidth="600.0" style="-fx-background-color: #0a2249;" BorderPane.alignment="CENTER" />
-   </top>
+<BorderPane prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #0a2249;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.141">
    <center>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #0a2249;" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="102.0" layoutY="99.0" prefHeight="104.0" prefWidth="484.0" text="Thank you for using Javelas Spell Checker" textFill="WHITE">
+            <Label layoutX="142.0" layoutY="215.0" text="Thank you for using Javelas Spell Checker" textFill="WHITE">
                <font>
                   <Font name="Segoe UI Light" size="24.0" />
                </font>
             </Label>
-            <Button fx:id="continuechecking" blendMode="SCREEN" layoutX="444.0" layoutY="267.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="124.0" text="Continue " />
-            <ImageView fitHeight="184.0" fitWidth="269.0" layoutX="175.0" layoutY="-43.0">
-               <image>
-                  <Image url="@../../../../Desktop/26694558_558579877825160_951847505_n.png" />
-               </image>
-            </ImageView>
-            <Label layoutX="167.0" layoutY="151.0" prefHeight="104.0" prefWidth="297.0" text="Would you like to check another text?" textFill="WHITE">
+            <Button layoutX="282.0" layoutY="389.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="137.0" text="Check another text">
                <font>
-                  <Font name="Segoe UI Light" size="16.0" />
+                  <Font size="14.0" />
                </font>
-            </Label>
+            </Button>
          </children>
       </AnchorPane>
    </center>
