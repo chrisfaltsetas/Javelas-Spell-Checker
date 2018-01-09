@@ -120,12 +120,15 @@ public class JavelasApp extends Application {
 	public void showThankYou() {
 		try {
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(JavelasApp.class.getResource("MistakeMenu.fxml"));
+			loader.setLocation(JavelasApp.class.getResource("Thankyou.fxml"));
 			root = (BorderPane) loader.load();
 			
         	Scene scene = new Scene(root);
         	primaryStage.setScene(scene);
-            primaryStage.show();            
+            primaryStage.show();
+            
+            ThankYouController controller = loader.getController();
+            controller.setJavelasApp(this);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

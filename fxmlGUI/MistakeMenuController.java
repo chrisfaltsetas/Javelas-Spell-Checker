@@ -42,7 +42,7 @@ public class MistakeMenuController {
 			javelasApp.raiseCounter();
 			javelasApp.handleMistake(this, javelasApp.counter);
 		} else {
-			javelasApp.showMainMenu();
+			javelasApp.showThankYou();
 		}
 		
 	}
@@ -55,7 +55,7 @@ public class MistakeMenuController {
 		if (javelasApp.counter < javelasApp.wrongWords.size()) {
 			javelasApp.handleMistake(this, javelasApp.counter++);
 		} else {
-			javelasApp.showMainMenu();
+			javelasApp.showThankYou();
 		}
 	}
 	
@@ -67,7 +67,7 @@ public class MistakeMenuController {
 		if (javelasApp.counter < javelasApp.wrongWords.size()) {
 			javelasApp.handleMistake(this, javelasApp.counter++);
 		} else {
-			javelasApp.showMainMenu();
+			javelasApp.showThankYou();
 		}
 	}
 	
