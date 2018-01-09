@@ -16,6 +16,7 @@ public class JavelasApp extends Application {
 
 	private Stage primaryStage;
 	private BorderPane root;
+	private boolean goToNext = false;
 
 	@Override
 	public void start(Stage primaryStage) {
@@ -116,26 +117,30 @@ public class JavelasApp extends Application {
 				controller.setWord(word);
 				controller.setWrongWordPanel();
 				
-				try {
-					primaryStage.getScene().wait();
-				} catch (InterruptedException e) {
-					Alert alert = new Alert(AlertType.WARNING);
-			        alert.initOwner(getPrimaryStage());
-			        alert.setTitle("Error");
-			        alert.setHeaderText("Error in thread");
-			        alert.setContentText("The thread could not wait");
-			        alert.showAndWait();
+				
+				
+				while(!goToNext) {
+					try {
+						this.wait(1000);
+					} catch (InterruptedException e) {
+					}
+					//goToNext = true;
+					System.out.println("Etsi vlepw ti kanei");
 				}
+				goToNext = false;
 				
 				
-				System.out.println("Etsi vlepw ti kanei");
 				//word.handleMistake(choice);				
 			}		
 		}
 		//javelasApp.showMainMenu();
 		//input.close();
 	}
-	
+
+	public void setGoToNext(boolean goToNext) {
+		this.goToNext = goToNext;
+	}
+
 
 	public Stage getPrimaryStage() {
 		return primaryStage;

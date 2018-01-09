@@ -94,5 +94,5 @@ public class MainMenuController {
 
 	public void setJavelasApp(JavelasApp javelasApp) {
 		this.javelasApp = javelasApp;
-	}
+	}	
 }

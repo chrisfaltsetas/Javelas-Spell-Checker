@@ -36,22 +36,25 @@ public class MistakeMenuController {
 	
 	@FXML
 	public void clickSkipThis(ActionEvent event) {
-		synchronized(javelasApp.getPrimaryStage().getScene()) {
-			javelasApp.getPrimaryStage().getScene().notify();
-		}
 		wrongWordPanel.setText(null);
 		suggestions.setText(null);
-		javelasApp.showEmptyScene();
+		javelasApp.setGoToNext(true);
 	}
 
 	@FXML
 	public void clickSkipSame(ActionEvent event) {
 		Dictionary.dictionaries.get(0).addWord(word);
+		wrongWordPanel.setText(null);
+		suggestions.setText(null);
+		javelasApp.setGoToNext(true);
 	}
 	
 	@FXML
 	public void clickAddToDictionary(ActionEvent event) {
 		Dictionary.dictionaries.get(0).addWordPermanently(word);
+		wrongWordPanel.setText(null);
+		suggestions.setText(null);
+		javelasApp.setGoToNext(true);
 	}
 	
 	public void setJavelasApp(JavelasApp javelasApp) {
