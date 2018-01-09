@@ -36,6 +36,9 @@ public class MistakeMenuController {
 	
 	@FXML
 	public void clickSkipThis(ActionEvent event) {
+		synchronized(javelasApp.getPrimaryStage().getScene()) {
+			javelasApp.getPrimaryStage().getScene().notify();
+		}
 		wrongWordPanel.setText(null);
 		suggestions.setText(null);
 		javelasApp.showEmptyScene();

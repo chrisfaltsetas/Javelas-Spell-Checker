@@ -116,6 +116,17 @@ public class JavelasApp extends Application {
 				controller.setWord(word);
 				controller.setWrongWordPanel();
 				
+				try {
+					primaryStage.getScene().wait();
+				} catch (InterruptedException e) {
+					Alert alert = new Alert(AlertType.WARNING);
+			        alert.initOwner(getPrimaryStage());
+			        alert.setTitle("Error");
+			        alert.setHeaderText("Error in thread");
+			        alert.setContentText("The thread could not wait");
+			        alert.showAndWait();
+				}
+				
 				
 				System.out.println("Etsi vlepw ti kanei");
 				//word.handleMistake(choice);				
