@@ -37,7 +37,7 @@ public class MainMenuController {
     }
 	
 	@FXML
-	private void checkImportedText(ActionEvent event) throws InterruptedException {
+	private void checkImportedText(ActionEvent event) {
 		FileChooser fileChooser = new FileChooser();
         FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt");
         fileChooser.getExtensionFilters().add(extFilter);
@@ -79,7 +79,7 @@ public class MainMenuController {
 	}
 	
 	@FXML
-	private void checkURLText(ActionEvent event) throws InterruptedException {
+	private void checkURLText(ActionEvent event) {
 		String text = new URLtextReader().removeHTMLTags(URLText.getText());
 		if (text != null && !text.isEmpty())
 			javelasApp.showMistakeMenu(text);
