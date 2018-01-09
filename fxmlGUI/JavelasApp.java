@@ -1,6 +1,7 @@
 package fxmlGUI;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -16,7 +17,8 @@ public class JavelasApp extends Application {
 
 	private Stage primaryStage;
 	private BorderPane root;
-	private boolean goToNext = false;
+	protected ArrayList<Word> wrongWords;
+	protected int counter;
 
 	@Override
 	public void start(Stage primaryStage) {
@@ -71,33 +73,29 @@ public class JavelasApp extends Application {
             
             MistakeMenuController controller = loader.getController();
             controller.setJavelasApp(this);
-            checkSpelling(text, controller);
+            findWrongWords(text);
+            if(wrongWords.size() > 0) {
+            	resetCounter();
+            	counter = 0;
+            	handleMistake(controller, counter);
+            }
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 	
-	public void showEmptyScene() {
-		try {
-			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(JavelasApp.class.getResource("MistakeMenu.fxml"));
-			root = (BorderPane) loader.load();
-			
-        	Scene scene = new Scene(root);
-        	primaryStage.setScene(scene);
-            primaryStage.show();
-            
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	public void handleMistake(MistakeMenuController controller, int index) {
+		 controller.setWord(wrongWords.get(counter));
+         controller.setWrongWordPanel();
 	}
 	
-	public void checkSpelling(String text, MistakeMenuController controller) {
+	public void findWrongWords(String text) {
 		
 		Word.createPunMap();
 		Word word = new Word(null);
+		wrongWords = new ArrayList<Word>();
 		
-		for (String wordStr: text.split(" ")) {		
+		for (String wordStr: text.split(" ")) {
 			boolean exists = false;
 			word.setWordStr(wordStr);
 			for (Dictionary dictionary: Dictionary.dictionaries) {
@@ -114,33 +112,32 @@ public class JavelasApp extends Application {
 				}
 			}
 			if (!exists) {
-				controller.setWord(word);
-				controller.setWrongWordPanel();
-				
-				
-				
-				while(!goToNext) {
-					try {
-						this.wait(1000);
-					} catch (InterruptedException e) {
-					}
-					//goToNext = true;
-					System.out.println("Etsi vlepw ti kanei");
-				}
-				goToNext = false;
-				
-				
-				//word.handleMistake(choice);				
+				wrongWords.add(new Word(word.getWordStr()));
 			}		
 		}
-		//javelasApp.showMainMenu();
-		//input.close();
 	}
-
-	public void setGoToNext(boolean goToNext) {
-		this.goToNext = goToNext;
+	
+	public void showThankYou() {
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(JavelasApp.class.getResource("MistakeMenu.fxml"));
+			root = (BorderPane) loader.load();
+			
+        	Scene scene = new Scene(root);
+        	primaryStage.setScene(scene);
+            primaryStage.show();            
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
-
+	
+	public void resetCounter() {
+		this.counter = 0;
+	}
+	
+	public void raiseCounter() {
+		this.counter++;
+	}
 
 	public Stage getPrimaryStage() {
 		return primaryStage;

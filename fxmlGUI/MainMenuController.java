@@ -31,14 +31,9 @@ public class MainMenuController {
 	
 	@FXML
     private void checkWrittenText(ActionEvent event) {
-		try {
-	    	String text = writtenText.getText();
-	    	if (text != null && !text.isEmpty())
-				javelasApp.showMistakeMenu(text);
-	    	//javelasApp.showMainMenu();
-		} catch (Exception e) {
-	    	//javelasApp.showMainMenu();
-		}
+    	String text = writtenText.getText();
+    	if (text != null && !text.isEmpty())
+			javelasApp.showMistakeMenu(text);		
     }
 	
 	@FXML
@@ -81,7 +76,6 @@ public class MainMenuController {
 		        alert.showAndWait();
 			}
         }
-        javelasApp.showMainMenu();
 	}
 	
 	@FXML
@@ -89,7 +83,6 @@ public class MainMenuController {
 		String text = new URLtextReader().removeHTMLTags(URLText.getText());
 		if (text != null && !text.isEmpty())
 			javelasApp.showMistakeMenu(text);
-		javelasApp.showMainMenu();
 	}
 
 	public void setJavelasApp(JavelasApp javelasApp) {
