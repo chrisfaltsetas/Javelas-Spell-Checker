@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxmlGUI.MainMenuController">
+   <center>
+      <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+        <tabs>
+          <Tab text="Write Text">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #124f4a;">
+                     <children>
+                        <Label layoutX="66.0" layoutY="76.0" prefHeight="35.0" prefWidth="571.0" text="Enter your text and press ENTER:" textFill="WHITE">
+                           <font>
+                              <Font name="Segoe UI Light" size="18.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="writtenText" layoutX="66.0" layoutY="170.0" onAction="#checkWrittenText" prefHeight="82.0" prefWidth="569.0" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Import txt">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #124f4a;">
+                     <children>
+                        <Label layoutX="87.0" layoutY="103.0" prefHeight="27.0" prefWidth="503.0" text="Select the txt file you want to check:" textFill="WHITE">
+                           <font>
+                              <Font name="Segoe UI Light" size="18.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="importedText" layoutX="315.0" layoutY="194.0" mnemonicParsing="false" onAction="#checkImportedText" prefHeight="33.0" prefWidth="75.0" text="Open..." />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+            <Tab text="Import URL">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #124f4a;">
+                     <children>
+                        <Label layoutX="76.0" layoutY="80.0" prefHeight="27.0" prefWidth="459.0" text="Enter the URL you want to check and press ENTER:" textFill="WHITE">
+                           <font>
+                              <Font name="Segoe UI Light" size="18.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="URLText" layoutX="143.0" layoutY="198.0" onAction="#checkURLText" prefHeight="25.0" prefWidth="414.0" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </center>
+   <bottom>
+      <AnchorPane prefHeight="25.0" prefWidth="600.0" style="-fx-background-color: #092d2a;" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" prefHeight="25.0" prefWidth="700.0" text="Javelas Production" textFill="WHITE">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </bottom>
+</BorderPane>
