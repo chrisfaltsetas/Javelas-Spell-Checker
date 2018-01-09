@@ -38,17 +38,37 @@ public class MistakeMenuController {
 	public void clickSkipThis(ActionEvent event) {
 		wrongWordPanel.setText(null);
 		suggestions.setText(null);
-		javelasApp.showEmptyScene();
+		if (javelasApp.counter < javelasApp.wrongWords.size() - 1) {
+			javelasApp.raiseCounter();
+			javelasApp.handleMistake(this, javelasApp.counter);
+		} else {
+			javelasApp.showMainMenu();
+		}
+		
 	}
 
 	@FXML
 	public void clickSkipSame(ActionEvent event) {
 		Dictionary.dictionaries.get(0).addWord(word);
+		wrongWordPanel.setText(null);
+		suggestions.setText(null);
+		if (javelasApp.counter < javelasApp.wrongWords.size()) {
+			javelasApp.handleMistake(this, javelasApp.counter++);
+		} else {
+			javelasApp.showMainMenu();
+		}
 	}
 	
 	@FXML
 	public void clickAddToDictionary(ActionEvent event) {
 		Dictionary.dictionaries.get(0).addWordPermanently(word);
+		wrongWordPanel.setText(null);
+		suggestions.setText(null);
+		if (javelasApp.counter < javelasApp.wrongWords.size()) {
+			javelasApp.handleMistake(this, javelasApp.counter++);
+		} else {
+			javelasApp.showMainMenu();
+		}
 	}
 	
 	public void setJavelasApp(JavelasApp javelasApp) {
