@@ -1,3 +1,4 @@
+package spellchecker;
 import java.util.ArrayList;
 
 public class Suggestions {
@@ -85,13 +86,15 @@ public class Suggestions {
 		String sug = "\n\t\t";
 		int counter = 0;
 		for (Word word: suggestedWords) {
-			counter++;
-			sug += String.valueOf(counter) + ") " + word.getWordStr() + "\n\t\t";
+			if (counter < 10) {
+				counter++;
+				sug += String.valueOf(counter) + ") " + word.getWordStr() + "\n\t\t";
+			}
 		}
 		if (counter == 0)
 			return "\tThere are no suggestions for the word \"" + word + "\"\n";
 		else
-			return "\tSuggestions for \"" + word + "\": " + sug;
+			return "\tSuggestions for \"" + word + "\": \n" + sug;
 	}
 
 

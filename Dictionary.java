@@ -1,3 +1,4 @@
+package spellchecker;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileInputStream;
@@ -15,7 +16,7 @@ public class Dictionary {
 	private int range;
 	private int addRemoveLetter;
 	
-	static ArrayList<Dictionary> dictionaries = new ArrayList<Dictionary>();
+	public static ArrayList<Dictionary> dictionaries = new ArrayList<Dictionary>();
 	private static boolean customExists = false;
 
 	public Dictionary(String lang, int range, int addRemoveLetter) throws IOException {

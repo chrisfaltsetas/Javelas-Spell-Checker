@@ -1,3 +1,4 @@
+package spellchecker;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -28,12 +29,12 @@ public class Word {
 		start.add("-");
 		start.add("<");
 		start.add("~");
-		start.add("«");
-		start.add("£");
-		start.add("¥");
-		start.add("€");
+		start.add("ï¿½");
+		start.add("ï¿½");
+		start.add("ï¿½");
+		start.add("ï¿½");
 		
-		end.add("»");
+		end.add("ï¿½");
 		end.add("!");
 		end.add("$");
 		end.add("%");
@@ -48,10 +49,10 @@ public class Word {
 		end.add(":");
 		end.add(";");
 		end.add("?");
-		end.add("»");
-		end.add("€");
-		end.add("£");
-		end.add("¥");
+		end.add("ï¿½");
+		end.add("ï¿½");
+		end.add("ï¿½");
+		end.add("ï¿½");
 		
 		punMap.put("start", start);
 		punMap.put("end", end);

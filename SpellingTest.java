@@ -1,10 +1,14 @@
+package spellchecker;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
 import java.util.Scanner;
+
+import javax.swing.JFileChooser;
 
 public class SpellingTest {
 
@@ -35,8 +39,12 @@ public class SpellingTest {
 					System.out.println("The input given was empty.");
 				
 			} else if (choice == 2) {
+				
+			  	JFileChooser fileChooser = new JFileChooser();
+				File testFile = fileChooser.getSelectedFile();
+				
 				System.out.print("Name of the txt file to be read: ");
-				BufferedReader rdr = new BufferedReader(new InputStreamReader(new FileInputStream(input.nextLine() + ".txt"), "UTF8"));
+				BufferedReader rdr = new BufferedReader(new InputStreamReader(new FileInputStream(testFile), "UTF8"));
 				String line = rdr.readLine();
 				if (line != null && line.length() >= 2 && line.substring(0, 1).equals("\ufeff"))
 					line = line.substring(1);
@@ -104,6 +112,7 @@ public class SpellingTest {
 				}
 			}
 			if (!exists) {
+				
 				word.printMistakeMenu();				
 				int choice = input.nextInt();				
 				while (choice < 1 || choice > 3) {
