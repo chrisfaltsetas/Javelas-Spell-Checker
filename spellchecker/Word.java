@@ -29,12 +29,7 @@ public class Word {
 		start.add("-");
 		start.add("<");
 		start.add("~");
-		start.add("�");
-		start.add("�");
-		start.add("�");
-		start.add("�");
 		
-		end.add("�");
 		end.add("!");
 		end.add("$");
 		end.add("%");
@@ -49,10 +44,6 @@ public class Word {
 		end.add(":");
 		end.add(";");
 		end.add("?");
-		end.add("�");
-		end.add("�");
-		end.add("�");
-		end.add("�");
 		
 		punMap.put("start", start);
 		punMap.put("end", end);
