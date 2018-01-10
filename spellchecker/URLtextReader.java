@@ -21,7 +21,6 @@ public class URLtextReader extends HTMLEditorKit.ParserCallback {
 		    in.close();
 		    return s.toString();
     	} catch (Exception e) {
-            System.out.println("There was an error reading the URL: " + e);
             return null;
     	}
     }

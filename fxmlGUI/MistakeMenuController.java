@@ -31,7 +31,10 @@ public class MistakeMenuController {
 	
 	@FXML
 	public void getSuggestions(ActionEvent event) {
-		suggestions.setText(new Suggestions(word).toString());
+		if (word != null)
+			suggestions.setText(new Suggestions(word).toString());
+		else
+			javelasApp.showThankYou();
 	}
 	
 	@FXML

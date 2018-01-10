@@ -11,6 +11,9 @@ public class ThankYouController {
 	
 	private JavelasApp javelasApp;
 	
+	public ThankYouController() {
+	}
+	
 	@FXML
 	public void clickCheckAgain(ActionEvent event) {
 		javelasApp.showMainMenu();
