@@ -1,0 +1,6 @@
+spellchecker\Suggestions.class
+spellchecker\Dictionary.class
+spellchecker\SpellChecker.class
+spellchecker\URLtextReader.class
+spellchecker\Word.class
+spellchecker\SpellingTest.class

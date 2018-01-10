@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #124f4a;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxmlGUI.MistakeMenuController">
+   <center>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #0a2249;" BorderPane.alignment="CENTER">
+         <children>
+            <Text fx:id="suggestions" fill="WHITE" layoutX="15.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="670.13671875">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+   </center>
+   <top>
+      <AnchorPane prefHeight="57.0" prefWidth="700.0" style="-fx-background-color: #0a2249;" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="getSuggestionsButton" blendMode="SCREEN" layoutX="564.0" layoutY="13.0" mnemonicParsing="false" onAction="#getSuggestions" text="Get Suggestions">
+               <font>
+                  <Font name="Segoe UI Semilight" size="14.0" />
+               </font></Button>
+            <Text fx:id="wrongWordPanel" blendMode="SCREEN" fill="WHITE" layoutX="22.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="542.13671875">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+         </children></AnchorPane>
+   </top>
+   <bottom>
+      <AnchorPane prefHeight="65.0" prefWidth="700.0" style="-fx-background-color: #15315b;" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="skipThis" blendMode="SCREEN" layoutX="50.0" layoutY="18.0" mnemonicParsing="false" onAction="#clickSkipThis" prefHeight="30.0" prefWidth="150.0" text="Skip this word">
+               <font>
+                  <Font name="Segoe UI Semilight" size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="addToDictionary" blendMode="SCREEN" layoutX="485.0" layoutY="18.0" mnemonicParsing="false" onAction="#clickAddToDictionary" prefHeight="30.0" prefWidth="166.0" text="Add word to dictionary">
+               <font>
+                  <Font name="Segoe UI Semilight" size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="skipSame" blendMode="SCREEN" layoutX="258.0" layoutY="18.0" mnemonicParsing="false" onAction="#clickSkipSame" prefHeight="30.0" prefWidth="171.0" text="Skip this word everytime">
+               <font>
+                  <Font name="Segoe UI Semilight" size="14.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+   </bottom>
+</BorderPane>
